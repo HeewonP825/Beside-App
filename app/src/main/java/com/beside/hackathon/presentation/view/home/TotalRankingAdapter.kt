@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.beside.hackathon.data.model.home.Ranking
-import com.beside.hackathon.databinding.ItemRankingBinding
+import com.beside.hackathon.databinding.ItemTotalRankingBinding
 
-class RankingAdapter(
+class TotalRankingAdapter(
     private val rankings: List<Ranking>,
-    private val itemClickListener: ((Ranking) -> Unit)?) : RecyclerView.Adapter<RankingAdapter.RankingViewHolder>() {
+    private val itemClickListener: ((Ranking) -> Unit)?) : RecyclerView.Adapter<TotalRankingAdapter.RankingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingViewHolder {
-        val binding = ItemRankingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemTotalRankingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RankingViewHolder(binding.root)
     }
 
@@ -24,7 +24,7 @@ class RankingAdapter(
     override fun getItemCount(): Int = rankings.size
 
     inner class RankingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding: ItemRankingBinding = ItemRankingBinding.bind(itemView)
+        private val binding: ItemTotalRankingBinding = ItemTotalRankingBinding.bind(itemView)
 
         fun bind(ranking: Ranking) {
             itemView.setOnClickListener {
