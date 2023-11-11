@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">2023-2-knu-cse-hackathon</string>
+    <!--AppName-->
+    <string name="app_name">비사이드</string>
+
+    <!--Splash-->
+    <string name="splash_text">언제나 당신곁에,</string>
+    <string name="splash_title">Be:SIDE</string>
+
+    <!-- home -->
+    <string name="hello">안녕하세요,</string>
+    <string name="user_name">000님</string>
+    <string name="user_univ">경북대학교</string>
+
+    <string name="interest_topic">현재 관심 분야</string>
+    <string name="topics">경제</string>
+    <string name="check_history">이전 기록 확인하기</string>
+
+    <string name="read_cardnews">읽은 카드뉴스</string>
+    <string name="participated_quiz">참여한 퀴즈 수</string>
+    <string name="Correct_answer_rate">퀴즈 정답률</string>
+
+    <string name="total_ranking">전체 TOP 랭킹 - </string>
+    <string name="quiz_score">점</string>
+
+    <string name="today_cardnews">오늘의 카드뉴스</string>
+    <string name="today_cardnews_text">오늘의 카드뉴스 확인하러 가기</string>
+    <string name="next_btn">GO!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
