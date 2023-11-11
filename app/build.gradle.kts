@@ -99,6 +99,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // ViewPager2
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation ("androidx.fragment:fragment-ktx:1.3.6")
+    implementation("com.tbuonomo:dotsindicator:5.0")
+
 
 }
 
