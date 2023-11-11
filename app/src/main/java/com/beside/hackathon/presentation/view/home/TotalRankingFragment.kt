@@ -16,14 +16,16 @@ import androidx.viewpager2.widget.ViewPager2
 import com.beside.hackathon.R
 import com.beside.hackathon.databinding.FragmentHomeBinding
 import com.beside.hackathon.databinding.FragmentTotalRankingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TotalRankingFragment : Fragment() {
     private var _binding: FragmentTotalRankingBinding? = null
     private lateinit var navController: NavController
     private val binding get() = _binding!!
 
     private lateinit var totalRankingAdapter: TotalRankingAdapter
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -35,7 +37,6 @@ class TotalRankingFragment : Fragment() {
         navController = findNavController()
 
         _binding = FragmentTotalRankingBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         recyclerView = binding.totalRankingRv // RecyclerView ID에 맞게 변경
         recyclerView.layoutManager = LinearLayoutManager(context)

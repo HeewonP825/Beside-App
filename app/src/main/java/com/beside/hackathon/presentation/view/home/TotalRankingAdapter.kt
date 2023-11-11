@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.beside.hackathon.data.model.home.RankScore
+import com.beside.hackathon.data.model.home.TotalRankScore
 import com.beside.hackathon.databinding.ItemTotalRankingBinding
 
 class TotalRankingAdapter(
-    private val rankScores: List<RankScore>,
-    private val itemClickListener: ((RankScore) -> Unit)?) : RecyclerView.Adapter<TotalRankingAdapter.RankingViewHolder>() {
+    private val totalRankScores: List<TotalRankScore>,
+    private val itemClickListener: ((TotalRankScore) -> Unit)?) : RecyclerView.Adapter<TotalRankingAdapter.RankingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingViewHolder {
         val binding = ItemTotalRankingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,16 +17,16 @@ class TotalRankingAdapter(
     }
 
     override fun onBindViewHolder(holder: RankingViewHolder, position: Int) {
-        val rankScore = rankScores[position]
+        val rankScore = totalRankScores[position]
         holder.bind(rankScore)
     }
 
-    override fun getItemCount(): Int = rankScores.size
+    override fun getItemCount(): Int = totalRankScores.size
 
     inner class RankingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemTotalRankingBinding = ItemTotalRankingBinding.bind(itemView)
 
-        fun bind(ranking: RankScore) {
+        fun bind(ranking: TotalRankScore) {
             itemView.setOnClickListener {
                 itemClickListener?.invoke(ranking)
             }

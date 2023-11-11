@@ -1,11 +1,11 @@
 package com.beside.hackathon.data.model.home
 
 data class SchoolRanking(
-    val myRanking: SchoolRankingScore,
-    val rankingUsers: List<SchoolRankingScore>
+    val myRanking: SchoolRankScore,
+    val rankingUsers: List<SchoolRankScore>
 )
 
-data class SchoolRankingScore(
+data class SchoolRankScore(
     val rank: Int,
     val schoolName: String,
     val score: Double,

@@ -13,9 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.beside.hackathon.R
 import com.beside.hackathon.databinding.FragmentHomeBinding
-import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var navController: NavController

@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.beside.hackathon.data.model.home.RankScore
-import com.beside.hackathon.data.model.home.SchoolRanking
-import com.beside.hackathon.data.model.home.SchoolRankingScore
-import com.beside.hackathon.data.model.home.TotalRanking
+import com.beside.hackathon.data.model.home.TotalRankScore
+import com.beside.hackathon.data.model.home.SchoolRankScore
 import com.beside.hackathon.data.repository.home.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -22,11 +20,11 @@ class HomeViewModel @Inject constructor(
     private val _currentPage = MutableLiveData<Int>()
     val currentPage: LiveData<Int> = _currentPage
 
-    private val _dataForTotalRankingFragment = MutableLiveData<List<RankScore>>()
-    val dataForTotalRankingFragment: LiveData<List<RankScore>> = _dataForTotalRankingFragment
+    private val _dataForTotalRankingFragment = MutableLiveData<List<TotalRankScore>>()
+    val dataForTotalRankingFragment: LiveData<List<TotalRankScore>> = _dataForTotalRankingFragment
 
-    private val _dataForUnivRankingFragment = MutableLiveData<List<SchoolRankingScore>>()
-    val dataForUnivRankingFragment: LiveData<List<SchoolRankingScore>> = _dataForUnivRankingFragment
+    private val _dataForUnivRankingFragment = MutableLiveData<List<SchoolRankScore>>()
+    val dataForUnivRankingFragment: LiveData<List<SchoolRankScore>> = _dataForUnivRankingFragment
 
     init {
         loadData()
@@ -34,17 +32,19 @@ class HomeViewModel @Inject constructor(
 
     private fun loadData() {
         viewModelScope.launch{
-            val totalresp = homeRepository.getTotalRanking()
+            val totalResp = homeRepository.getTotalRanking()
+
+            val totalList = mutableListOf<TotalRankScore>()
+            totalList.add(totalResp.myRanking)
+            totalList.addAll(totalResp.rankingUsers)
+            _dataForTotalRankingFragment.value = totalList
+
             val schoolResp = homeRepository.getSchoolRanking()
-            val totalList =
-                listOf(
-                    totalresp.myRanking,
-                    totalresp.rankingUsers,
-                )
+            val schoolList = mutableListOf<SchoolRankScore>()
+            schoolList.add(schoolResp.myRanking)
+            schoolList.addAll(schoolResp.rankingUsers)
+            _dataForUnivRankingFragment.value = schoolList
         }
-        // 예시 데이터
-        _dataForTotalRankingFragment.value = listOf(/* ... 데이터 ... */)
-        _dataForUnivRankingFragment.value = listOf(/* ... 데이터 ... */)
     }
 
     // 현재 페이지를 설정하는 메서드
