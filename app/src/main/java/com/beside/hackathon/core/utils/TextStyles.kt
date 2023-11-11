@@ -10,6 +10,11 @@ object TextStyles {
         fontSize = 40.sp,
         fontWeight = FontWeight.W700
     )
+    val MEDIUMN_TITLE_STYLE = TextStyle(
+        fontSize = 24.sp,
+        fontWeight = FontWeight.W700
+    )
+
     val TITLE_TEXT_STYLE = TextStyle(
         fontSize = 20.sp,
         fontWeight = FontWeight.W700
@@ -25,6 +30,11 @@ object TextStyles {
         fontSize = 18.sp,
         fontWeight = FontWeight.W700
     )
+    val TITLE_TEXT3_STYLE = TextStyle(
+        fontSize = 14.sp,
+        fontWeight = FontWeight.W700
+    )
+
 
     val CONTENT_TEXT1_STYLE = TextStyle(
         fontSize = 18.sp,
@@ -33,6 +43,16 @@ object TextStyles {
 
     val CONTENT_TEXT2_STYLE = TextStyle(
         fontSize = 16.sp,
+        fontWeight = FontWeight.W500
+    )
+
+    val CONTENT_SMALL1_STYLE = TextStyle(
+        fontSize = 12.sp,
+        fontWeight = FontWeight.W500
+    )
+
+    val CONTENT_SMALL2_STYLE = TextStyle(
+        fontSize = 10.sp,
         fontWeight = FontWeight.W500
     )
 }
