@@ -5,4 +5,5 @@
 
     <color name="mainColor">#FFCA52</color>
     <color name="lightGray">#F7F7F8</color>
+    <color name="gray">#AAAAAA</color>
 </resources>
