@@ -3,6 +3,7 @@ package com.beside.hackathon.core.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.beside.hackathon.data.api.ApiService
+import com.beside.hackathon.data.repository.home.HomeRepository
 import com.beside.hackathon.data.repository.user.TokenRepository
 import com.beside.hackathon.data.repository.user.UserRepository
 import dagger.Binds
@@ -31,6 +32,14 @@ object RepositoryModule {
         sharedPreferences: SharedPreferences
     ): TokenRepository {
         return TokenRepository(sharedPreferences)
+    }
+
+    @Singleton
+    @Provides
+    fun providerHomeRepository(
+        apiService: ApiService
+    ): HomeRepository {
+        return HomeRepository(apiService)
     }
 
 
