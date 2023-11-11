@@ -1,4 +1,4 @@
-package com.beside.hackathon.presentation.viewmodel.login
+package com.beside.hackathon.presentation.view.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

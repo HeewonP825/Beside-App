@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.beside.hackathon.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
             isAppearanceLightNavigationBars = true
         }
 
-        setContentView(R.layout.activity_main)
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
     }
 
     override fun onPreDraw(): Boolean {

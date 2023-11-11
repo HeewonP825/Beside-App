@@ -1,4 +1,4 @@
-package com.beside.hackathon.presentation.viewmodel.home
+package com.beside.hackathon.presentation.view.home
 
 import androidx.lifecycle.ViewModel
 
