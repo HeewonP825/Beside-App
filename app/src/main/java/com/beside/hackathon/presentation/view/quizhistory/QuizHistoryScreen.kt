@@ -38,7 +38,7 @@ import com.beside.hackathon.presentation.view.common.DefaultLayout
 import java.util.Date
 
 @Composable
-fun QuizHistoryScreen(navController: NavController) {
+fun QuizHistoryScreen(navController: NavController, viewModel: QuizHistoryViewModel) {
     DefaultLayout(
         title = "역대 퀴즈 기록",
         backButtonOnClick = {
@@ -148,5 +148,5 @@ fun WhiteBox(title:String, content: String){
 @Composable
 fun previewQuizHistoryScreen() {
     val x = rememberNavController()
-    QuizHistoryScreen(navController = x)
+    //QuizHistoryScreen(navController = x)
 }

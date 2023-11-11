@@ -25,8 +25,8 @@ class QuizHistoryRepository @Inject constructor(
         return apiService.getQuizHistory()
     }
 
-    override fun getPagingData(page:Int): Flow<PagingData<QuizHistory>> {
-        val pagingSourceFactory = { OffsetPagingSource(page, this) }
+    override fun getPagingData(): Flow<PagingData<QuizHistory>> {
+        val pagingSourceFactory = { OffsetPagingSource(0, this) }
         return Pager(
             config = PagingConfig(
                 pageSize = 20,

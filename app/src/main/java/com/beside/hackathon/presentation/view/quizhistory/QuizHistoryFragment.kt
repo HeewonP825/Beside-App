@@ -23,7 +23,7 @@ class QuizHistoryFragment : Fragment() {
     private lateinit var navController: NavController
     private val binding get() = _binding!!
 
-    private val quizViewModel: QuizHistoryViewModel by viewModels()
+    private val quizHistoryViewModel: QuizHistoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +38,7 @@ class QuizHistoryFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MaterialTheme {
-                    QuizHistoryScreen(navController)
+                    QuizHistoryScreen(navController, quizHistoryViewModel)
                 }
             }
         }
