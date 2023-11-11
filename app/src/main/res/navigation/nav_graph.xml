@@ -11,8 +11,8 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_homeFragment_to_solveQuizFragment"
-            app:destination="@id/solve_quiz_fragment" />
+            android:id="@+id/action_homeFragment_to_quizFragment"
+            app:destination="@id/quiz_fragment" />
 
     </fragment>
 
@@ -23,9 +23,17 @@
     </fragment>
 
     <fragment
-        android:id="@+id/solve_quiz_fragment"
-        android:name="com.beside.hackathon.presentation.view.quiz.SolveQuizFragment"
-        tools:layout="@layout/fragment_solve_quiz">
+        android:id="@+id/quiz_fragment"
+        android:name="com.beside.hackathon.presentation.view.quiz.QuizFragment"
+        tools:layout="@layout/fragment_quiz">
+        <action
+            android:id="@+id/action_quiz_fragment_to_quizSolveFragment"
+            app:destination="@id/quizSolveFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/quizSolveFragment"
+        android:name="com.beside.hackathon.presentation.view.quiz.QuizSolveFragment"
+        android:label="fragment_quiz_solve"
+        tools:layout="@layout/fragment_quiz_solve" />
 
 </navigation>

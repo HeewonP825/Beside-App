@@ -1,16 +1,11 @@
 package com.beside.hackathon.presentation.view.quiz
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -23,19 +18,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.beside.hackathon.core.utils.TextSyles.BUTTON_TEXT_STYLE
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
-import com.beside.hackathon.presentation.viewmodel.quiz.QuizVIewModel
+import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
 
 
 @Composable
-fun QuizSolveScreen(viewModel: QuizVIewModel){
+fun QuizSolveScreen(navController: NavController,viewModel: QuizViewModel){
     val quizState = viewModel.quiz.collectAsState()
     var page by remember { mutableStateOf(0) }
 
 
-    DefaultLayout(title = "퀴즈 풀기"){
+    DefaultLayout(
+        title = "퀴즈 풀기",
+        backButtonOnClick = {
+            navController.popBackStack()
+        }
+    ){
         Column(
             modifier = Modifier.fillMaxSize().padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
