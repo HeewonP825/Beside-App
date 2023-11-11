@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_fragment"
-    app:startDestination="@+id/home_fragment">
+    app:startDestination="@+id/login_fragment">
 
     <fragment
         android:id="@+id/home_fragment"
@@ -20,6 +20,15 @@
         android:id="@+id/login_fragment"
         android:name="com.beside.hackathon.presentation.view.login.LoginFragment"
         tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_fragment_to_home_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/login_fragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/home_fragment" />
+        <action
+            android:id="@+id/action_login_fragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
 
     <fragment
@@ -44,5 +53,14 @@
         android:name="com.beside.hackathon.presentation.view.quiz.QuizSubmitFragment"
         android:label="fragment_quiz_submit"
         tools:layout="@layout/fragment_quiz_submit" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.beside.hackathon.presentation.view.login.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_home_fragment"
+            app:destination="@id/home_fragment" />
+    </fragment>
 
 </navigation>

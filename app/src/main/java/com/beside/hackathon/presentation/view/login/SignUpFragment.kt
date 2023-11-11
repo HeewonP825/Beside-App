@@ -10,15 +10,13 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.beside.hackathon.databinding.FragmentLoginBinding
-import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
+import com.beside.hackathon.databinding.FragmentSignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
-
+class SignUpFragment : Fragment() {
     private val userViewModel: UserViewModel by viewModels()
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentSignUpBinding? = null
     private lateinit var navController: NavController
     private val binding get() = _binding!!
 
@@ -30,14 +28,14 @@ class LoginFragment : Fragment() {
     ): View {
         // navController 초기화
         navController = findNavController()
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         val root = binding.root
         //navController.popBackStack()
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MaterialTheme {
-                    LoginScreen(navController, userViewModel)
+                    SignUpScreen(navController, userViewModel)
                 }
             }
         }
