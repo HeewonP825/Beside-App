@@ -14,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.beside.hackathon.R
 import com.beside.hackathon.databinding.FragmentHomeBinding
 import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
+import java.util.Calendar
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -52,6 +53,9 @@ class HomeFragment : Fragment() {
 
         val viewPagerFragmentAdapter = ViewPagerFragmentAdapter(this)
         binding.viewPager2.adapter = viewPagerFragmentAdapter
+
+        // 현재 날짜와 요일 확인
+        setupViewsBasedOnDayOfWeek()
     }
 
     private fun setupViewPager() {
@@ -78,5 +82,29 @@ class HomeFragment : Fragment() {
                 else -> "" // 기본값 또는 다른 페이지에 대한 텍스트
             }
         })
+    }
+
+    private fun setupViewsBasedOnDayOfWeek() {
+        val today = Calendar.getInstance()
+        when (today.get(Calendar.DAY_OF_WEEK)) {
+            Calendar.SUNDAY -> {
+                // 일요일일 경우
+                binding.todayCardnews.visibility = View.GONE
+                binding.todayQuiz.visibility = View.VISIBLE
+                binding.todayCardnewsView.visibility = View.GONE
+                binding.todayQuizView.visibility = View.VISIBLE
+                binding.cardnewsBtn.visibility = View.GONE
+                binding.quizBtn.visibility = View.VISIBLE
+            }
+            else -> {
+                // 월요일부터 토요일일 경우
+                binding.todayCardnews.visibility = View.VISIBLE
+                binding.todayQuiz.visibility = View.GONE
+                binding.todayCardnewsView.visibility = View.VISIBLE
+                binding.todayQuizView.visibility = View.GONE
+                binding.cardnewsBtn.visibility = View.VISIBLE
+                binding.quizBtn.visibility = View.GONE
+            }
+        }
     }
 }
