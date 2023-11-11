@@ -39,7 +39,7 @@ fun QuizHistoryScreen(navController: NavController) {
     DefaultLayout(
         title = "역대 퀴즈 기록",
         backButtonOnClick = {
-            // navController.popBackStack()
+            navController.popBackStack()
         }
     ) {
         Column(

@@ -50,6 +50,9 @@ class HomeFragment : Fragment() {
         binding.imageButtonRecord.setOnClickListener {
             navController.navigate(R.id.action_home_fragment_to_recordFragment)
         }
+        binding.cardnewsBtn.setOnClickListener {
+            navController.navigate(R.id.action_home_fragment_to_cardNews_fragment)
+        }
 
         return root
     }

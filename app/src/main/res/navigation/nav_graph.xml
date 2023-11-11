@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_home_fragment_to_recordFragment"
             app:destination="@id/recordFragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_cardNews_fragment"
+            app:destination="@+id/CardNewsFragment"/>
 
     </fragment>
 
@@ -78,5 +81,14 @@
         android:name="com.beside.hackathon.presentation.view.record.RecordFragment"
         android:label="fragment_record"
         tools:layout="@layout/fragment_record" />
+
+    <fragment
+        android:id="@+id/CardNewsFragment"
+        android:name="com.beside.hackathon.presentation.view.cardnews.CardNewsFragment"
+        tools:layout="@layout/fragment_card_news">
+        <action
+            android:id="@+id/action_cardNewsFragment_to_homeFragment"
+            app:destination="@id/home_fragment" />
+    </fragment>
 
 </navigation>

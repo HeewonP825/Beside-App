@@ -1,4 +1,7 @@
 package com.beside.hackathon.presentation.view.cardnews
 
-class CardNewsViewModel {
+import androidx.lifecycle.ViewModel
+
+class CardNewsViewModel : ViewModel() {
+
 }
