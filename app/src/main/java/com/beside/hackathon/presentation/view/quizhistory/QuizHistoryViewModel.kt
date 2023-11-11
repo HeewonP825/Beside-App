@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.beside.hackathon.data.model.quizhistory.CorrectQuiz
 import com.beside.hackathon.data.model.quizhistory.QuizHistory
 import com.beside.hackathon.data.repository.quizhistory.QuizHistoryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +20,10 @@ class QuizHistoryViewModel @Inject constructor(
 ) : ViewModel(){
     private val _history = MutableStateFlow<PagingData<QuizHistory>>(PagingData.empty())
     val history: StateFlow<PagingData<QuizHistory>> = _history.asStateFlow()
+
+    private val _correctQuiz = MutableStateFlow<CorrectQuiz?>(null)
+    val correctQuiz: StateFlow<CorrectQuiz?> = _correctQuiz.asStateFlow()
+
     init {
         getHistory()
     }
@@ -32,6 +37,19 @@ class QuizHistoryViewModel @Inject constructor(
                     .collect {
                         _history.value = it
                     }
+            }.onFailure {
+                it.printStackTrace()
+            }
+        }
+    }
+
+
+    fun getCorrectQuiz(quizId: Long){
+        viewModelScope.launch {
+            kotlin.runCatching {
+                repository.getCorrectQuiz(quizId)
+            }.onSuccess {
+                _correctQuiz.value = it
             }.onFailure {
                 it.printStackTrace()
             }

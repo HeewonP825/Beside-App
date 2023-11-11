@@ -21,6 +21,7 @@ class QuizCorrectFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val quizHistoryViewModel: QuizHistoryViewModel by viewModels()
+    private var quizId: Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,18 +33,25 @@ class QuizCorrectFragment : Fragment() {
         _binding = FragmentQuizCorrectBinding.inflate(inflater, container, false)
         val root = binding.root
 
-        val id = arguments?.getLong("id")
+        quizId = arguments?.getLong("id")
 
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MaterialTheme {
-                    QuizCorrectScreen(navController,quizHistoryViewModel,id!!)
+                    QuizCorrectScreen(navController,quizHistoryViewModel,quizId!!)
                 }
             }
         }
         return root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        quizHistoryViewModel.getCorrectQuiz(quizId!!)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
