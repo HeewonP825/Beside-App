@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beside.hackathon.R
-import com.beside.hackathon.data.model.home.Ranking
 import com.beside.hackathon.databinding.FragmentTotalRankingBinding
 import com.beside.hackathon.databinding.FragmentUnivRankingBinding
 
@@ -36,34 +35,16 @@ class UnivRankingFragment : Fragment() {
         _binding = FragmentUnivRankingBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        // RecyclerView 초기화
-        recyclerView = binding.univRankingRv
+
+        recyclerView = binding.univRankingRv // RecyclerView ID에 맞게 변경
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // 예시 데이터 생성
-        val exampleData = listOf(
-            Ranking(6, "000", "경북대학교", 78),
-            Ranking(1, "000", "경북대학교", 98),
-            Ranking(2, "000", "경북대학교", 88),
-            Ranking(3, "000", "경북대학교", 84),
-            // ... 추가 데이터 ...
-        )
-
-        // 어댑터 설정
-        univRankingAdapter = UnivRankingAdapter(exampleData) { item ->
-            // 아이템 클릭 시 수행할 작업
-        }
-        recyclerView.adapter = univRankingAdapter
-
-//        recyclerView = binding.univRankingRv // RecyclerView ID에 맞게 변경
-//        recyclerView.layoutManager = LinearLayoutManager(context)
-//
-//        viewModel.dataForUnivRankingFragment.observe(viewLifecycleOwner, Observer { data ->
-//            univRankingAdapter = UnivRankingAdapter(data) { item ->
-//                // 아이템 클릭 시 수행할 작업
-//            }
-//            recyclerView.adapter = univRankingAdapter
-//        })
+        viewModel.dataForUnivRankingFragment.observe(viewLifecycleOwner, Observer { data ->
+            univRankingAdapter = UnivRankingAdapter(data) { item ->
+                // 아이템 클릭 시 수행할 작업
+            }
+            recyclerView.adapter = univRankingAdapter
+        })
 
         val root: View = binding.root
 

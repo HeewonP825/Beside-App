@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.beside.hackathon.data.model.home.Ranking
+import com.beside.hackathon.data.model.home.RankScore
 import com.beside.hackathon.databinding.ItemTotalRankingBinding
 
 class TotalRankingAdapter(
-    private val rankings: List<Ranking>,
-    private val itemClickListener: ((Ranking) -> Unit)?) : RecyclerView.Adapter<TotalRankingAdapter.RankingViewHolder>() {
+    private val rankScores: List<RankScore>,
+    private val itemClickListener: ((RankScore) -> Unit)?) : RecyclerView.Adapter<TotalRankingAdapter.RankingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingViewHolder {
         val binding = ItemTotalRankingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,24 +17,24 @@ class TotalRankingAdapter(
     }
 
     override fun onBindViewHolder(holder: RankingViewHolder, position: Int) {
-        val ranking = rankings[position]
-        holder.bind(ranking)
+        val rankScore = rankScores[position]
+        holder.bind(rankScore)
     }
 
-    override fun getItemCount(): Int = rankings.size
+    override fun getItemCount(): Int = rankScores.size
 
     inner class RankingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemTotalRankingBinding = ItemTotalRankingBinding.bind(itemView)
 
-        fun bind(ranking: Ranking) {
+        fun bind(ranking: RankScore) {
             itemView.setOnClickListener {
                 itemClickListener?.invoke(ranking)
             }
 
-            binding.rankingNumber.text = ranking.ranking.toString()
-            binding.userName.text = ranking.userNickname
-            binding.userUniv.text = ranking.userUniv
-            binding.rankingPoint.text = ranking.rankingPoint.toString()
+            binding.rankingNumber.text = ranking.rank.toString()
+            binding.userName.text = ranking.name
+            binding.userUniv.text = ranking.schoolName
+            binding.rankingPoint.text = ranking.score.toString()
         }
     }
 }
