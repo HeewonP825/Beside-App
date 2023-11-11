@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.beside.hackathon.databinding.FragmentSignUpBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
+    private val userViewModel: UserViewModel by viewModels()
     private var _binding: FragmentSignUpBinding? = null
     private lateinit var navController: NavController
     private val binding get() = _binding!!
@@ -31,6 +35,7 @@ class SignUpFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MaterialTheme {
+                    SignUpScreen(navController, userViewModel)
                 }
             }
         }

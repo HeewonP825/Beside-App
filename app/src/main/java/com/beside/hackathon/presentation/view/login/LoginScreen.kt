@@ -2,6 +2,7 @@ package com.beside.hackathon.presentation.view.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -83,6 +84,9 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel){
             BottomPart(
                 onClick = {
                     userViewModel.login(id, password)
+                },
+                signUpClick = {
+                    navController.navigate(R.id.action_login_fragment_to_signUpFragment)
                 }
             )
             Spacer(modifier = Modifier.height(85.dp))
@@ -163,12 +167,16 @@ internal fun MiddlePart(
 @Composable
 internal fun BottomPart(
     onClick: () -> Unit,
+    signUpClick: () -> Unit
 ){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Text("아직 계정 없으신가요? 회원가입",style =CONTENT_TEXT3_STYLE)
+        Text("아직 계정 없으신가요? 회원가입",style =CONTENT_TEXT3_STYLE,
+            modifier = Modifier.clickable {
+                signUpClick()
+            })
         Spacer(modifier = Modifier.height(12.dp))
         CustomButton(onClick = onClick) {
             Text("로그인", style = BUTTON_TEXT_STYLE)
