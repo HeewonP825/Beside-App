@@ -10,7 +10,9 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.beside.hackathon.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
 
     private val splashContent by lazy { findViewById<View>(android.R.id.content) }

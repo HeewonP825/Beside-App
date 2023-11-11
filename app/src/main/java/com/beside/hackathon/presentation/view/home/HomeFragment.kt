@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         binding.quizBtn.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_solveQuizFragment)
+            navController.navigate(R.id.action_homeFragment_to_quizFragment)
         }
 
             return root
