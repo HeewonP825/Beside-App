@@ -132,7 +132,7 @@ internal fun MiddlePart(
     val focusManager = LocalFocusManager.current
     Column {
         TextField(
-            label = { Text("아아디",style = PYEONG_CONTENT2_STLYE) },
+            label = { Text("아이디",style = PYEONG_CONTENT2_STLYE) },
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.Transparent,
             ),
