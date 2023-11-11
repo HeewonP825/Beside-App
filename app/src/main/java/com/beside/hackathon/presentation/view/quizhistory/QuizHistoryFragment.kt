@@ -38,7 +38,7 @@ class QuizHistoryFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MaterialTheme {
-                    QuizSolveScreen(navController, quizViewModel)
+                    QuizHistoryScreen(navController)
                 }
             }
         }
