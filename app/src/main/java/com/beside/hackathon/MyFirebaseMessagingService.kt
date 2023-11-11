@@ -1,6 +1,5 @@
 package com.beside.hackathon
 
-import FCMActivity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -73,7 +72,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     // 수신 된 FCM 메시지를 포함하는 간단한 알림을 만들고 표시한다.
     private fun sendNotification(title: String, body: String) {
-        val intent = Intent(this, FCMActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent,
