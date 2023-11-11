@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.beside.hackathon.R
+import com.beside.hackathon.data.model.cardnews.CardNewsUrls
 import com.beside.hackathon.databinding.FragmentCardNewsBinding
 import com.beside.hackathon.databinding.FragmentHomeBinding
 import com.beside.hackathon.presentation.view.home.HomeViewModel
@@ -39,6 +42,12 @@ class CardNewsFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             navController.navigate(R.id.action_cardNewsFragment_to_homeFragment)
         }
+
+        val recyclerView: RecyclerView = requireView().findViewById(R.id.cardnews_rv)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        val cardNewsUrls = CardNewsUrls(listOf("url1", "url2", "url3"))
+        recyclerView.adapter = CardNewsAdapter(cardNewsUrls.contentUrls)
 
         val root: View = binding.root
 
