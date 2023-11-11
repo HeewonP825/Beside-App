@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.beside.hackathon.R
-import com.beside.hackathon.core.utils.TextSyles.BUTTON_TEXT_STYLE
+import com.beside.hackathon.core.utils.TextStyles.BUTTON_TEXT_STYLE
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
 

@@ -16,38 +16,35 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import com.beside.hackathon.R
 import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Colors.BUTTON_YELLOW
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_H
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_V
-import com.beside.hackathon.core.utils.TextSyles.BUTTON_TEXT_STYLE
-import com.beside.hackathon.core.utils.TextSyles.TITLE_TEXT2_STYLE
+import com.beside.hackathon.core.utils.TextStyles.BUTTON_TEXT_STYLE
+import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT2_STYLE
 import com.beside.hackathon.data.model.quiz.Option
 import com.beside.hackathon.data.model.quiz.Question
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
 import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 
 @Composable
@@ -90,8 +87,12 @@ fun QuizSolveScreen(navController: NavController,viewModel: QuizViewModel){
                                 if(resp ==  null){
                                     Toast.makeText(navController.context,"풀지 않는 문제가 있습니다!",Toast.LENGTH_SHORT).show()
                                 }else{
-                                    Toast.makeText(navController.context,"${resp}",Toast.LENGTH_SHORT).show()
-
+                                    val bundle = bundleOf(
+                                        "name" to resp.userName,
+                                        "count" to resp.correctAnswerCount,
+                                        "total" to resp.totalQuestionCount
+                                    )
+                                    navController.navigate(R.id.action_quizSolveFragment_to_quizSubmitFragment, bundle)
                                 }
                             }
                         }

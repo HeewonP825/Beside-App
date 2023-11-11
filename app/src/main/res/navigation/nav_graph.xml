@@ -34,6 +34,15 @@
         android:id="@+id/quizSolveFragment"
         android:name="com.beside.hackathon.presentation.view.quiz.QuizSolveFragment"
         android:label="fragment_quiz_solve"
-        tools:layout="@layout/fragment_quiz_solve" />
+        tools:layout="@layout/fragment_quiz_solve" >
+        <action
+            android:id="@+id/action_quizSolveFragment_to_quizSubmitFragment"
+            app:destination="@id/quizSubmitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizSubmitFragment"
+        android:name="com.beside.hackathon.presentation.view.quiz.QuizSubmitFragment"
+        android:label="fragment_quiz_submit"
+        tools:layout="@layout/fragment_quiz_submit" />
 
 </navigation>
