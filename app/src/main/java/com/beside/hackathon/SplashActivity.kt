@@ -40,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
         }
 
         // 스플래시 화면 디스플레이 시간 조절 (예: 2000 밀리초, 즉 2초)
-        setInitialize(3000)
+        setInitialize(2000)
     }
 
     private fun setInitialize(delayMillis: Long) {
