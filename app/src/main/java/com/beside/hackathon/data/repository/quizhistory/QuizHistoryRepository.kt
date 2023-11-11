@@ -3,7 +3,6 @@ package com.beside.hackathon.data.repository.quizhistory
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import com.beside.hackathon.data.api.ApiService
 import com.beside.hackathon.data.model.common.OffsetPagination
 import com.beside.hackathon.data.model.quizhistory.CorrectQuiz
@@ -19,7 +18,7 @@ class QuizHistoryRepository @Inject constructor(
 
 
     suspend fun getCorrectQuiz(quizId: Long): CorrectQuiz {
-        return apiService.getQuizDetail(quizId)
+        return apiService.getCorrectQuiz(quizId)
     }
 
     override suspend fun paginate(page: Int): OffsetPagination<QuizHistory> {

@@ -1,6 +1,7 @@
 package com.beside.hackathon.presentation.view.quizhistory
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,8 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.beside.hackathon.R
 import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_H
@@ -53,7 +56,10 @@ fun QuizHistoryScreen(navController: NavController) {
                 wrongCount = 5,
                 quizPercent = 0.5,
                 onClick = {
-
+                    val bundle = bundleOf(
+                        "id" to 1,
+                    )
+                    navController.navigate(R.id.action_quizHistoryFragment_to_quizCorrectFragment, bundle)
                 }
             )
         }
@@ -88,13 +94,19 @@ fun QuizHistoryItem(
         ) {
             Text(title, style = TITLE_TEXT4_STYLE)
             Spacer(modifier = Modifier.weight(1f))
-            Text("틀린 문제 확인하기", style =CONTENT_SMALL1_STYLE)
+            Text(
+                "틀린 문제 확인하기",
+                style =CONTENT_SMALL1_STYLE,
+                modifier = Modifier.clickable {
+                    onClick()
+                }
+            )
             Icon(Icons.Filled.KeyboardArrowRight, contentDescription = null)
         }
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             "${DataUtils.conventDateToString(startDate)} " +
-                "~ ${DataUtils.conventDateToString(startDate)}",
+                "~ ${DataUtils.conventDateToString(endDate)}",
             style = CONTENT_SMALL1_STYLE.copy(
                 color = Color.Gray
             )

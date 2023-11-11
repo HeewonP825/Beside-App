@@ -75,7 +75,11 @@
         android:id="@+id/quizHistoryFragment"
         android:name="com.beside.hackathon.presentation.view.quizhistory.QuizHistoryFragment"
         android:label="fragment_quiz_history"
-        tools:layout="@layout/fragment_quiz_history" />
+        tools:layout="@layout/fragment_quiz_history" >
+        <action
+            android:id="@+id/action_quizHistoryFragment_to_quizCorrectFragment"
+            app:destination="@id/quizCorrectFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recordFragment"
         android:name="com.beside.hackathon.presentation.view.record.RecordFragment"
@@ -90,5 +94,10 @@
             android:id="@+id/action_cardNewsFragment_to_homeFragment"
             app:destination="@id/home_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/quizCorrectFragment"
+        android:name="com.beside.hackathon.presentation.view.quizhistory.QuizCorrectFragment"
+        android:label="fragment_quiz_correct"
+        tools:layout="@layout/fragment_quiz_correct" />
 
 </navigation>
