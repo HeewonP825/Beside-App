@@ -30,7 +30,7 @@ import com.beside.hackathon.core.utils.DataUtils
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL1_STYLE
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL2_STYLE
 import com.beside.hackathon.core.utils.TextStyles.MEDIUMN_TITLE_STYLE
-import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT3_STYLE
+import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT4_STYLE
 import com.beside.hackathon.presentation.view.common.DefaultLayout
 import java.util.Date
 
@@ -86,7 +86,7 @@ fun QuizHistoryItem(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(title, style = TITLE_TEXT3_STYLE)
+            Text(title, style = TITLE_TEXT4_STYLE)
             Spacer(modifier = Modifier.weight(1f))
             Text("틀린 문제 확인하기", style =CONTENT_SMALL1_STYLE)
             Icon(Icons.Filled.KeyboardArrowRight, contentDescription = null)

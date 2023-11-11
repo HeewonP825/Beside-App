@@ -47,6 +47,9 @@ class HomeFragment : Fragment() {
         binding.cardView5.setOnClickListener {
             navController.navigate(R.id.action_home_fragment_to_quizHistoryFragment)
         }
+        binding.imageButtonRecord.setOnClickListener {
+            navController.navigate(R.id.action_home_fragment_to_recordFragment)
+        }
 
         return root
     }
