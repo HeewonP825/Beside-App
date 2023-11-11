@@ -44,7 +44,7 @@ interface ApiService {
     suspend fun getQuizHistory(): OffsetPagination<QuizHistory>
 
     @GET("quiz/{quizId}")
-    suspend fun getQuizDetail(
+    suspend fun getCorrectQuiz(
         @Path("quizId") quizId: Long
     ): CorrectQuiz
 
