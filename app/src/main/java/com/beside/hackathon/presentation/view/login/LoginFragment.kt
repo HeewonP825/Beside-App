@@ -7,11 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.beside.hackathon.databinding.FragmentLoginBinding
+import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
+
+    private val userViewModel: UserViewModel by viewModels()
     private var _binding: FragmentLoginBinding? = null
     private lateinit var navController: NavController
     private val binding get() = _binding!!
@@ -31,6 +37,7 @@ class LoginFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MaterialTheme {
+                    LoginScreen(navController, userViewModel)
                 }
             }
         }
