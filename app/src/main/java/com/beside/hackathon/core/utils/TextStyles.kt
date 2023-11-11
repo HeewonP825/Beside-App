@@ -34,6 +34,10 @@ object TextStyles {
         fontWeight = FontWeight.W700
     )
     val TITLE_TEXT3_STYLE = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.W700
+    )
+    val TITLE_TEXT4_STYLE = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.W700
     )
