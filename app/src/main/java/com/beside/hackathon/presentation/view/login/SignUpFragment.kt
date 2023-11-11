@@ -9,10 +9,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.beside.hackathon.databinding.FragmentLoginBinding
+import com.beside.hackathon.databinding.FragmentSignUpBinding
 
-class LoginFragment : Fragment() {
-    private var _binding: FragmentLoginBinding? = null
+class SignUpFragment : Fragment() {
+    private var _binding: FragmentSignUpBinding? = null
     private lateinit var navController: NavController
     private val binding get() = _binding!!
 
@@ -24,7 +24,7 @@ class LoginFragment : Fragment() {
     ): View {
         // navController 초기화
         navController = findNavController()
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         val root = binding.root
         //navController.popBackStack()
         binding.composeView.apply {
