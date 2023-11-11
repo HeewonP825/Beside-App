@@ -173,7 +173,9 @@ internal fun BottomPart(
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Text("아직 계정 없으신가요? 회원가입",style =CONTENT_TEXT3_STYLE,
+        Text("아직 계정 없으신가요? 회원가입",style =CONTENT_TEXT3_STYLE.copy(
+            color = Color(0xFF707070)
+        ),
             modifier = Modifier.clickable {
                 signUpClick()
             })

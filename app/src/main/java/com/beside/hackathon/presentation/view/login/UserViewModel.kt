@@ -43,5 +43,9 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    fun signUp(id: String, password: String, collage: String, nickName: String, interest: String) {
+
+    }
+
 }
 
