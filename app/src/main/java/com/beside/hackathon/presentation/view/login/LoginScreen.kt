@@ -55,6 +55,10 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel){
 
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val isLogin = userViewModel.isLogin.value
+    if(isLogin){
+        navController.navigate(R.id.action_login_fragment_to_home_fragment)
+    }
     DefaultLayout {
         Column(
             modifier = Modifier
@@ -72,13 +76,13 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel){
                 onIdChanged = { id = it },
                 onPasswordChanged = { password = it },
                 onKeyboardAction = {
-                    //userViewModel.login(id, password)
+                    userViewModel.login(id, password)
                 }
             )
             Spacer(modifier = Modifier.height(60.dp))
             BottomPart(
                 onClick = {
-                    //userViewModel.login(id, password)
+                    userViewModel.login(id, password)
                 }
             )
             Spacer(modifier = Modifier.height(85.dp))
