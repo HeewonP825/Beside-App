@@ -2,6 +2,7 @@ package com.beside.hackathon.presentation.view.common
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -16,7 +17,7 @@ import com.beside.hackathon.core.utils.TextSyles.TITLE_TEXT_STYLE
 @Composable
 fun DefaultLayout(
     title: String? = null,
-    body: @Composable () -> Unit
+    body: @Composable () -> Unit,
 ){
     Scaffold (
         topBar={
@@ -29,7 +30,7 @@ fun DefaultLayout(
             }
         }
     ){
-        Box(modifier = Modifier.padding(it)) {
+        Box(modifier = Modifier.padding(it).fillMaxSize()) {
             body()
         }
     }

@@ -6,7 +6,12 @@ import androidx.compose.ui.unit.sp
 
 object TextSyles {
     val TITLE_TEXT_STYLE = TextStyle(
-        fontSize = 24.sp,
-        fontWeight = FontWeight.Bold
+        fontSize = 20.sp,
+        fontWeight = FontWeight.W700
+    )
+
+    val BUTTON_TEXT_STYLE = TextStyle(
+        fontSize = 22.sp,
+        fontWeight = FontWeight.W700
     )
 }
