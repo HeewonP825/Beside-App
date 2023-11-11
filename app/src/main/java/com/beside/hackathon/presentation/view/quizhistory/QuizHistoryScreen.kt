@@ -3,6 +3,7 @@ package com.beside.hackathon.presentation.view.quizhistory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.beside.hackathon.R
 import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
@@ -34,11 +37,13 @@ import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL1_STYLE
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL2_STYLE
 import com.beside.hackathon.core.utils.TextStyles.MEDIUMN_TITLE_STYLE
 import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT4_STYLE
+import com.beside.hackathon.data.model.quizhistory.QuizHistory
 import com.beside.hackathon.presentation.view.common.DefaultLayout
 import java.util.Date
 
 @Composable
 fun QuizHistoryScreen(navController: NavController, viewModel: QuizHistoryViewModel) {
+    val historyList = viewModel.history.collectAsLazyPagingItems()
     DefaultLayout(
         title = "역대 퀴즈 기록",
         backButtonOnClick = {
@@ -48,30 +53,47 @@ fun QuizHistoryScreen(navController: NavController, viewModel: QuizHistoryViewMo
         Column(
             modifier = Modifier.padding(horizontal = DEFAULT_PADDING_H),
         ) {
-            QuizHistoryItem(
-                title = "퀴즈 제목",
-                startDate = Date(),
-                endDate = Date(),
-                correctCount = 10,
-                wrongCount = 5,
-                quizPercent = 0.5,
-                onClick = {
-                    val bundle = bundleOf(
-                        "id" to 1,
-                    )
-                    navController.navigate(R.id.action_quizHistoryFragment_to_quizCorrectFragment, bundle)
+            LazyColumn {
+                items(historyList.itemCount) { index ->
+                    historyList[index]?.let { history ->
+                        QuizHistoryItem.fromModel(
+                            model = history,
+                            onClick = {
+                                val bundle = bundleOf(
+                                    "id" to history.quizId,
+                                )
+                                navController.navigate(R.id.action_quizHistoryFragment_to_quizCorrectFragment, bundle)
+                            }
+                        )
+                        Spacer(modifier = Modifier.height(DEFAULT_PADDING_V))
+                    }
                 }
-            )
+            }
         }
 
     }
 }
 
+object QuizHistoryItem
+
 @Composable
-fun QuizHistoryItem(
+fun QuizHistoryItem.fromModel(model: QuizHistory, onClick: () -> Unit) {
+    QuizHistoryItemBase(
+        title = model.subject,
+        startDate = model.startDate,
+        endDate = model.endDate,
+        correctCount = model.correctQuizCount,
+        wrongCount = model.wrongQuizCount,
+        quizPercent = model.answerRate,
+        onClick = onClick
+    )
+}
+
+@Composable
+fun QuizHistoryItemBase(
     title: String,
-    startDate: Date,
-    endDate: Date,
+    startDate: String,
+    endDate: String,
     correctCount: Int,
     wrongCount: Int,
     quizPercent: Double,
@@ -105,8 +127,7 @@ fun QuizHistoryItem(
         }
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            "${DataUtils.conventDateToString(startDate)} " +
-                "~ ${DataUtils.conventDateToString(endDate)}",
+            "${startDate} ~ ${endDate}",
             style = CONTENT_SMALL1_STYLE.copy(
                 color = Color.Gray
             )

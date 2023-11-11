@@ -10,6 +10,8 @@ import com.beside.hackathon.data.model.quizhistory.QuizHistory
 import com.beside.hackathon.data.repository.common.OffsetPagingSource
 import com.beside.hackathon.data.repository.common.PagingRepository
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
+import java.util.Date
 import javax.inject.Inject
 
 class QuizHistoryRepository @Inject constructor(
@@ -22,6 +24,38 @@ class QuizHistoryRepository @Inject constructor(
     }
 
     override suspend fun paginate(page: Int): OffsetPagination<QuizHistory> {
+        return OffsetPagination<QuizHistory>(
+            false,
+            listOf(
+                QuizHistory(
+                    1,
+                    "2021-10-10",
+                    "2021-10-10",
+                    "제목",
+                    1,
+                    1,
+                    10.5,
+                ),
+                QuizHistory(
+                    2,
+                    "2021-10-10",
+                    "2021-10-10",
+                    "제목",
+                    1,
+                    1,
+                    10.5,
+                ),QuizHistory(
+                    3,
+                    "2021-10-10",
+                    "2021-10-10",
+                    "제목",
+                    1,
+                    1,
+                    10.5,
+                )
+            )
+        )
+
         return apiService.getQuizHistory()
     }
 
