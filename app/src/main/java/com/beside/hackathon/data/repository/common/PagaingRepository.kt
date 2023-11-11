@@ -1,4 +1,15 @@
 package com.beside.hackathon.data.repository.common
 
-interface PagaingRepository {
+import androidx.paging.PagingData
+import com.beside.hackathon.data.model.common.ModelWithId
+import com.beside.hackathon.data.model.common.OffsetPagination
+import kotlinx.coroutines.flow.Flow
+
+interface PagingRepository<T : Any> {
+
+    suspend fun paginate(
+        page: Int,
+    ) : OffsetPagination<T>
+
+    fun getPagingData() : Flow<PagingData<T>>
 }
