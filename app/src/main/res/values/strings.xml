@@ -28,4 +28,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="today_quiz">오늘은 퀴즈푸는날</string>
+    <string name="today_quiz_text">오늘의 퀴즈 해결하러 가기</string>
+    <string name="quiz_btn">GO!</string>
 </resources>
