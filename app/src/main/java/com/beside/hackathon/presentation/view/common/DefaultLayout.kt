@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.beside.hackathon.core.utils.TextSyles.TITLE_TEXT_STYLE
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -22,7 +23,7 @@ fun DefaultLayout(
             title?.let {
                 TopAppBar(
                     title = {
-                        Text(text = title)
+                        Text(text = title, style = TITLE_TEXT_STYLE)
                     }
                 )
             }
