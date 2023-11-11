@@ -32,11 +32,9 @@ class SplashActivity : AppCompatActivity() {
         val barColor = ContextCompat.getColor(this, R.color.white)
         with(window) {
             statusBarColor = barColor
-            navigationBarColor = barColor
         }
         with(WindowInsetsControllerCompat(window, window.decorView)) {
             isAppearanceLightStatusBars = true
-            isAppearanceLightNavigationBars = true
         }
 
         // 스플래시 화면 디스플레이 시간 조절 (예: 2000 밀리초, 즉 2초)

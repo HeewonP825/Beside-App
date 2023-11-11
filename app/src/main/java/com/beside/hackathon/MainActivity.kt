@@ -29,11 +29,9 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
         val barColor = ContextCompat.getColor(this, R.color.white)
         with(window) {
             statusBarColor = barColor
-            navigationBarColor = barColor
         }
         with(WindowInsetsControllerCompat(window, window.decorView)) {
             isAppearanceLightStatusBars = true
-            isAppearanceLightNavigationBars = true
         }
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
