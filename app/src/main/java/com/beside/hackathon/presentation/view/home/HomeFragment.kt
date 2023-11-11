@@ -30,8 +30,8 @@ class HomeFragment : Fragment() {
         // navController 초기화
         navController = findNavController()
 
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+//        val homeViewModel =
+//            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
             navController.navigate(R.id.action_homeFragment_to_quizFragment)
         }
 
-            return root
+        return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,6 +72,11 @@ class HomeFragment : Fragment() {
     private fun subscribeUi() {
         homeViewModel.currentPage.observe(viewLifecycleOwner, Observer { page ->
             // 현재 페이지에 따른 UI 업데이트 로직
+            binding.rankingTitle.text = when (page) {
+                0 -> "전체 TOP 랭킹 -" // TotalRankingFragment에 대한 텍스트
+                1 -> "학교별 TOP 랭킹 -" // UnivRankingFragment에 대한 텍스트
+                else -> "" // 기본값 또는 다른 페이지에 대한 텍스트
+            }
         })
     }
 }
