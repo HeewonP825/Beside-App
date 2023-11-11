@@ -17,6 +17,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -38,6 +42,7 @@ import com.beside.hackathon.core.utils.TextStyles.CONTENT_TEXT1_STYLE
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_TEXT2_STYLE
 import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT_STYLE
 import com.beside.hackathon.databinding.FragmentQuizSubmitBinding
+import com.beside.hackathon.presentation.component.BackHandler
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
 import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
@@ -91,6 +96,24 @@ fun QuizSubmitScreen(
     count: Int,
     total: Int
 ){
+    var backPressed by remember { mutableStateOf(false) }
+
+    BackHandler(
+        onBack = {
+            // 뒤로가기 버튼을 누르면 수행할 작업을 여기에 정의합니다.
+            // 예를 들어, 화면을 닫거나 특정 동작을 수행할 수 있습니다.
+            backPressed = true
+        }
+    )
+
+    if (backPressed) {
+        navController.popBackStack(
+            R.id.home_fragment,
+            inclusive = false
+        )
+    }
+
+
     DefaultLayout(
         title = "퀴즈 풀기",
         backButtonOnClick = {
