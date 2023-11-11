@@ -11,5 +11,5 @@ interface PagingRepository<T : Any> {
         page: Int,
     ) : OffsetPagination<T>
 
-    fun getPagingData() : Flow<PagingData<T>>
+    fun getPagingData(page: Int) : Flow<PagingData<T>>
 }

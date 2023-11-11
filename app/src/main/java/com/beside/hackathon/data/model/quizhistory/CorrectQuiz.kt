@@ -1,4 +1,6 @@
-package com.beside.hackathon.data.model.quiz
+package com.beside.hackathon.data.model.quizhistory
+
+import com.beside.hackathon.data.model.quiz.Option
 
 data class CorrectQuiz(
     val quizId:Long,

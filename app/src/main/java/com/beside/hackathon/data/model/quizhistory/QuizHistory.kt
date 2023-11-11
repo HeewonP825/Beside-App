@@ -1,8 +1,8 @@
-package com.beside.hackathon.data.model.record
+package com.beside.hackathon.data.model.quizhistory
 
 import java.util.Date
 
-data class QuizRecord(
+data class QuizHistory(
     val quizId: Int,
     val startData: Date,
     val endData: Date,
