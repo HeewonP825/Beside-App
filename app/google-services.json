@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "204251487007",
+    "project_id": "knu-cse-hackathon",
+    "storage_bucket": "knu-cse-hackathon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204251487007:android:bf1dd5c0f8684d8e542e2a",
+        "android_client_info": {
+          "package_name": "com.beside.hackathon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPL52HRhUaMYtOD5avLOqsny3IqC8_iT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
