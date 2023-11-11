@@ -5,18 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.beside.hackathon.R
 import com.beside.hackathon.databinding.FragmentHomeBinding
+import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var navController: NavController
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: HomeViewModel
+    private val HomeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

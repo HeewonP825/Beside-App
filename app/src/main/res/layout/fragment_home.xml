@@ -59,7 +59,7 @@
                     android:fontFamily="@font/notosans_kr_bold"
                     android:text="@string/user_name"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView" />
 
@@ -237,11 +237,12 @@
                     android:id="@+id/read_cardnews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/notosans_kr_bold"
                     android:text="00"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textView4"
                     app:layout_constraintStart_toStartOf="@+id/textView4"
@@ -251,11 +252,12 @@
                     android:id="@+id/participate_quiz"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/notosans_kr_bold"
                     android:text="00"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textView6"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
@@ -265,11 +267,12 @@
                     android:id="@+id/correct_quiz_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/notosans_kr_bold"
                     android:text="0%"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textView5"
                     app:layout_constraintStart_toStartOf="@+id/textView5"
@@ -288,7 +291,7 @@
             android:fontFamily="@font/notosans_kr_bold"
             android:text="@string/total_ranking"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
@@ -301,7 +304,7 @@
             android:fontFamily="@font/notosans_kr_bold"
             android:text="@string/topics"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
@@ -338,7 +341,7 @@
             android:fontFamily="@font/notosans_kr_bold"
             android:text="@string/today_cardnews"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
 
@@ -367,7 +370,7 @@
                     android:fontFamily="@font/notosans_kr_regular"
                     android:text="@string/today_cardnews_text"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
