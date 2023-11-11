@@ -83,6 +83,9 @@ dependencies {
     //paging
     implementation("androidx.paging:paging-compose:1.0.0-alpha18")
 
+    //splash
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
 }
 
 kapt {
