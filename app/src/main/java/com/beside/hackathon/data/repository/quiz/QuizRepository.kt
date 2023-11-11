@@ -38,8 +38,12 @@ class QuizRepository @Inject constructor(
         //return apiService.getTodayQuiz()
     }
     suspend fun submitQuiz(
-        selectedOptionIds: List<Long>,
+        selectedOptionIds: List<Int>,
     ): QuizSubmitResponse {
+        return QuizSubmitResponse(
+            "user",10,10
+        )
+
         val body = QuizSubmitRequest(
             selectedOptionIds = selectedOptionIds,
         )
