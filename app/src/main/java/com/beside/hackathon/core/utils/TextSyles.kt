@@ -16,4 +16,14 @@ object TextSyles {
         fontWeight = FontWeight.W700,
         color = WHITE
     )
+
+    val TITLE_TEXT2_STYLE = TextStyle(
+        fontSize = 18.sp,
+        fontWeight = FontWeight.W700
+    )
+
+    val CONTENT_TEXT_STYLE = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.W500
+    )
 }

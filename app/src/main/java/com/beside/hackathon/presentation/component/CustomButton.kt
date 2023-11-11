@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.beside.hackathon.core.utils.Colors
+import com.beside.hackathon.core.utils.Constant
+import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
 import com.beside.hackathon.core.utils.TextSyles
 
 @Composable
@@ -22,7 +24,7 @@ fun CustomButton(onClick : () -> Unit, content: @Composable RowScope.() -> Unit)
             .height(76.dp)
             .background(
                 color = Colors.BUTTON_YELLOW,
-                shape = RoundedCornerShape(15.dp)
+                shape = RoundedCornerShape(BORDER_RADIUS)
             )
     ) {
         content()
