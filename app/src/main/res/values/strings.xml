@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">2023-2-knu-cse-hackathon</string>
+    <!--AppName-->
+    <string name="app_name">비사이드</string>
+
+    <!--Splash-->
+    <string name="splash_text">언제나 당신곁에,</string>
+    <string name="splash_title">Be:SIDE</string>
 </resources>
