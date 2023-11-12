@@ -22,10 +22,6 @@ class QuizRepository @Inject constructor(
         quizId: Int,
         answers: List<Answer>,
     ): QuizSubmitResponse {
-        return QuizSubmitResponse(
-            "user",10,10
-        )
-
         val body = QuizSubmitRequest(
             quizId = quizId,
             answers = answers
