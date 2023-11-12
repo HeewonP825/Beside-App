@@ -1,5 +1,6 @@
 package com.beside.hackathon.presentation.view.login
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -39,6 +40,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -72,6 +74,8 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
     var privacyAgree by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
 
+    var isIdError by remember { mutableStateOf(false) }
+    var isNicknameError by remember { mutableStateOf(false) }
     var idErrorMsg by remember { mutableStateOf("") }
     var nicknameErrorMsg by remember { mutableStateOf("") }
 
@@ -115,15 +119,17 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     onValueChange = {
                         id = it
                     },
-                    isError = idErrorMsg.isNotEmpty(),
+                    isError = isIdError,
                 )
                 DuplicateButton(onClick = {
                     coroutineScope.launch{
                         val resp = viewModel.idValidCheck(id)
                         if(!resp){
+                            isIdError = true
                             idErrorMsg = "사용 불가능한 아이디입니다."
                         }else{
-                            idErrorMsg = ""
+                            isIdError = false
+                            idErrorMsg = "사용 가능한 아이디입니다."
                         }
 
                     }
@@ -133,7 +139,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                 Text(
                     idErrorMsg,
                     style = TextStyles.CONTENT_SMALL2_STYLE.copy(
-                        color = Color.Red
+                        color = if(isNicknameError) Color.Red else Color.Black
                     ),
                     modifier = Modifier.padding(top = 4.dp)
                 )
@@ -214,15 +220,17 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     onValueChange = {
                         nickName = it
                     },
-                    isError = nicknameErrorMsg.isNotEmpty(),
+                    isError = isNicknameError,
                 )
                 DuplicateButton(onClick = {
                     coroutineScope.launch{
                         val resp = viewModel.nicknameValidCheck(nickName)
                         if(!resp){
+                            isNicknameError = true
                             nicknameErrorMsg = "사용 불가능한 아이디입니다."
                         }else{
-                            nicknameErrorMsg = ""
+                            isNicknameError = false
+                            nicknameErrorMsg = "사용 가능한 아이디입니다."
                         }
                     }
                 })
@@ -231,7 +239,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                 Text(
                     nicknameErrorMsg,
                     style = TextStyles.CONTENT_SMALL2_STYLE.copy(
-                        color = Color.Red
+                        color = if(isNicknameError) Color.Red else Color.Black
                     ),
                     modifier = Modifier.padding(top = 4.dp)
                 )

@@ -59,7 +59,7 @@ interface ApiService {
     @Headers("Auth: false")
     suspend fun signUp(@Body() signUpRequest: SignUpRequest)
 
-    @POST("/login")
+    @POST("/login/form")
     @Headers("Auth: false")
     suspend fun login(@Body() loginRequest: LoginRequest) : JwtToken
 
