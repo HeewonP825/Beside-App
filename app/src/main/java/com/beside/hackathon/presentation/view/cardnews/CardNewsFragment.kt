@@ -73,7 +73,7 @@ class CardNewsFragment : Fragment() {
                         // 스크롤이 끝에 도달했을 때 버튼 상태 변경
                         binding.readBtn.apply {
                             isEnabled = true
-                            //setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_cardnews_read_btn))// 색상 변경
+                            //setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_cardnews_read_btn))// dreawable 변경
                             setBackgroundColor(ContextCompat.getColor(context, R.color.mainColor)) // 색상 변경
                         }
                         binding.readBtn.setOnClickListener {
