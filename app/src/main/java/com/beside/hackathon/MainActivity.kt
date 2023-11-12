@@ -20,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
 import dagger.hilt.android.AndroidEntryPoint
+import android.Manifest
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
@@ -88,22 +89,22 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
         // API 레벨 33 이상인 경우에만 POST_NOTIFICATIONS 권한 요청
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             when {
-//                ContextCompat.checkSelfPermission(
-//                    this,
-//                    Manifest.permission.POST_NOTIFICATIONS
-//                ) == PackageManager.PERMISSION_GRANTED -> {
-//                    // 알림 권한이 이미 허용됨
-//                    setupNotification()
-//                }
-//                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
-//                    // UI를 통해 사용자에게 알림 권한의 중요성 설명 후 권한 요청
-//                    // TODO: UI 구현
-//                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-//                }
-//                else -> {
-//                    // 권한 직접 요청
-//                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-//                }
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    // 알림 권한이 이미 허용됨
+                    setupNotification()
+                }
+                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
+                    // UI를 통해 사용자에게 알림 권한의 중요성 설명 후 권한 요청
+                    // TODO: UI 구현
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+                else -> {
+                    // 권한 직접 요청
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
             }
         } else {
             // 오래된 버전의 Android는 별도의 알림 권한 요청이 필요 없음
