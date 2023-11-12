@@ -36,7 +36,7 @@ class AuthInterceptor @Inject constructor(
         if(refreshResponse.code == 201) {
             val gson = Gson()
             val refreshResponseJson = gson.fromJson(refreshResponse.body?.string(), Map::class.java)
-            val newAccessToken = refreshResponseJson["accessToken"].toString()
+            val newAccessToken = refreshResponseJson["accessKey"].toString()
             prefs.edit().putString("accessToken", newAccessToken).apply()
             val newRequest = originRequest.newBuilder()
                 .removeHeader("Authorization")
