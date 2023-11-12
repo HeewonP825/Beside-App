@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_home_fragment_to_cardNews_fragment"
             app:destination="@+id/CardNewsFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_SummaryFragment"
+            app:destination="@+id/SummaryFragment"/>
 
     </fragment>
 
