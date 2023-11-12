@@ -5,6 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.beside.hackathon.data.model.user.Interest
 import com.beside.hackathon.data.repository.user.TokenRepository
 import com.beside.hackathon.data.repository.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +22,12 @@ class UserViewModel @Inject constructor(
 
     private val _isLogin = mutableStateOf(false)
     val isLogin : State<Boolean> = _isLogin
+
+    private val _isIdValid = mutableStateOf(false)
+    val isIdValid : State<Boolean> = _isIdValid
+
+    private val _isNicknameValid = mutableStateOf(false)
+    val isNicknameValid : State<Boolean> = _isNicknameValid
 
     init {
         tokenRepository.getAccessToken()?.let {
@@ -43,8 +50,40 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    fun signUp(id: String, password: String, collage: String, nickName: String, interest: String) {
-
+    suspend fun idValidCheck(id: String):Boolean{
+        kotlin.runCatching {
+            userRepository.idValidation(id)
+        }.onSuccess {
+            _isIdValid.value = !it
+            return !it
+        }.onFailure {
+            it.printStackTrace()
+        }
+        return false
+    }
+    suspend fun nicknameValidCheck(nickname: String) : Boolean{
+        kotlin.runCatching {
+            userRepository.nicknameValidation(nickname)
+        }.onSuccess {
+            _isNicknameValid.value = !it
+            return !it
+        }.onFailure {
+            it.printStackTrace()
+        }
+        return false
+    }
+    fun signUp(id: String, password: String, collage: String, nickName: String, interest: Interest) {
+        if(!isNicknameValid.value) throw Exception("id is not valid")
+        if(!_isNicknameValid.value) throw Exception("nickname is not valid")
+        viewModelScope.launch {
+            kotlin.runCatching {
+                userRepository.signUp(id, password,collage,nickName,interest)
+            }.onSuccess {
+                userRepository.login(id, password)
+            }.onFailure {
+                it.printStackTrace()
+            }
+        }
     }
 
 }

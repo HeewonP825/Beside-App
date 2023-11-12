@@ -35,17 +35,14 @@ import com.beside.hackathon.R
 import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Constant
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_H
-import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_V
 import com.beside.hackathon.core.utils.TextStyles
 import com.beside.hackathon.core.utils.TextStyles.BIG_TITLE_STYLE
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_TEXT1_STYLE
-import com.beside.hackathon.core.utils.TextStyles.CONTENT_TEXT2_STYLE
 import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT_STYLE
 import com.beside.hackathon.databinding.FragmentQuizSubmitBinding
 import com.beside.hackathon.presentation.component.BackHandler
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
-import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -1,4 +1,4 @@
-package com.beside.hackathon.presentation.viewmodel.quiz
+package com.beside.hackathon.presentation.view.quiz
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,7 +1,6 @@
 package com.beside.hackathon.presentation.view.quizhistory
 
 import com.beside.hackathon.databinding.FragmentQuizHistoryBinding
-import com.beside.hackathon.presentation.view.quiz.QuizSolveScreen
 
 
 import android.os.Bundle
@@ -14,7 +13,6 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
