@@ -148,9 +148,12 @@ fun QuizSubmitScreen(
                     .padding(bottom = 20.dp, top = 10.dp)
                     .background(BG_GREY)) {
                     CustomButton(onClick = {
-                        //navController.navigate(R.id.action_quiz_fragment_to_quizSolveFragment)
+                        navController.popBackStack(
+                            R.id.home_fragment,
+                            inclusive = false
+                        )
                     }) {
-                        Text("틀린 문제 확인하기", style = TextStyles.BUTTON_TEXT_STYLE)
+                        Text("홈으로 가기", style = TextStyles.BUTTON_TEXT_STYLE)
                     }
                 }
             }

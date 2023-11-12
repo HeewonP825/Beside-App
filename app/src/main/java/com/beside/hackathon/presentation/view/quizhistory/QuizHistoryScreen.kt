@@ -35,6 +35,7 @@ import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL1_STYLE
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL2_STYLE
 import com.beside.hackathon.core.utils.TextStyles.MEDIUMN_TITLE_STYLE
 import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT4_STYLE
+import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT_STYLE
 import com.beside.hackathon.data.model.quizhistory.QuizHistory
 import com.beside.hackathon.presentation.view.common.DefaultLayout
 
@@ -157,7 +158,7 @@ fun WhiteBox(title:String, content: String){
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(title, style = CONTENT_SMALL2_STYLE)
-        Text(content,style =MEDIUMN_TITLE_STYLE)
+        Text(content,style =TITLE_TEXT_STYLE)
     }
 }
 
