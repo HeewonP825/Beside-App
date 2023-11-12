@@ -69,7 +69,13 @@
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUpFragment_to_home_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/login_fragment"
+            app:popUpToInclusive="true"
             app:destination="@id/home_fragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/quizHistoryFragment"
@@ -99,5 +105,10 @@
         android:name="com.beside.hackathon.presentation.view.quizhistory.QuizCorrectFragment"
         android:label="fragment_quiz_correct"
         tools:layout="@layout/fragment_quiz_correct" />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.beside.hackathon.presentation.view.common.WebViewFragment"
+        android:label="fragment_webview"
+        tools:layout="@layout/fragment_webview" />
 
 </navigation>

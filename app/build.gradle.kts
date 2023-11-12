@@ -118,6 +118,9 @@ dependencies {
     //Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
+    //webView
+    implementation ("com.google.accompanist:accompanist-webview:0.24.13-rc")
 }
 
 kapt {

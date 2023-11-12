@@ -1,5 +1,9 @@
 package com.beside.hackathon.presentation.view.login
 
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -53,6 +57,7 @@ import com.beside.hackathon.core.utils.Colors.BUTTON_YELLOW
 import com.beside.hackathon.core.utils.Colors.DIVIDER_GRAY
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_H
+import com.beside.hackathon.core.utils.Constant.PRIVACY_URL
 import com.beside.hackathon.core.utils.TextStyles
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL2_STYLE
 import com.beside.hackathon.data.model.user.Interest
@@ -107,7 +112,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = DEFAULT_PADDING_H / 2),
-                    label = { Text("아아디", style = TextStyles.PYEONG_CONTENT2_STLYE) },
+                    label = { Text("아이디", style = TextStyles.PYEONG_CONTENT2_STLYE) },
                     colors = TextFieldDefaults.textFieldColors(
                         containerColor = Color.Transparent,
                         focusedIndicatorColor = DIVIDER_GRAY,
@@ -131,6 +136,9 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     isError = isIdError,
                 )
                 DuplicateButton(isFilled = isIdValid, onClick = {
+                    if(id.isEmpty()){
+                        return@DuplicateButton
+                    }
                     coroutineScope.launch{
                         val resp = viewModel.idValidCheck(id)
                         if(!resp){
@@ -232,6 +240,9 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     isError = isNicknameError,
                 )
                 DuplicateButton(isFilled = isNicknameValid,onClick = {
+                    if(nickName.isEmpty()){
+                        return@DuplicateButton
+                    }
                     coroutineScope.launch{
                         val resp = viewModel.nicknameValidCheck(nickName)
                         if(!resp){
@@ -292,7 +303,9 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
 
                 Box {
                     DropdownMenu(
-                        modifier = Modifier.wrapContentSize().background(color = Color.White),
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .background(color = Color.White),
                         expanded = dropDownMenuExpanded,
                         onDismissRequest = {
                             dropDownMenuExpanded = false
@@ -354,20 +367,35 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                         termsAgree = !termsAgree
                     },
                     title = "이용 약관에 동의합니다."
-                )
+                ){
+                    Text("내용 보기 >",style = TextStyles.CONTENT_SMALL1_STYLE,
+                        modifier = Modifier.clickable {
+                        }
+                    )
+                }
                 RadioButtonRow(
                     selected = privacyAgree,
                     onClick = {
                         privacyAgree = !privacyAgree
                     },
                     title = "개인 정보 수집 및 이용에 동의합니다."
-                )
+                ){
+                    Text("내용 보기 >",style = TextStyles.CONTENT_SMALL1_STYLE,
+                        modifier = Modifier.clickable {
+                            val bundle = Bundle()
+                            bundle.putString("url",PRIVACY_URL)
+                            navController.navigate(R.id.action_signUpFragment_to_webViewFragment,bundle)
+                        }
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(40.dp))
 
             CustomButton(onClick = {
-                if(id.isEmpty() || password.isEmpty() || collage.isEmpty() || nickName.isEmpty() || interest == null){
+                if(id.isEmpty() || password.isEmpty() || collage.isEmpty() || nickName.isEmpty() || interest == null
+                    || !ageAgree || !termsAgree || !privacyAgree
+                    ){
                     return@CustomButton
                 }
                 viewModel.signUp(id,password,collage,nickName,interest!!)
@@ -391,7 +419,7 @@ fun DuplicateButton(isFilled: Boolean = false,onClick : () -> Unit){
                 onClick()
             }
             .background(
-                color = if(isFilled) BUTTON_YELLOW else Color.Transparent,
+                color = if (isFilled) BUTTON_YELLOW else Color.Transparent,
                 shape = RoundedCornerShape(BORDER_RADIUS)
             )
             .border(
@@ -423,6 +451,7 @@ fun RadioButtonRow(selected: Boolean, onClick: () -> Unit,title:String, content:
             onClick = onClick,
         )
         Text(title,style = TextStyles.CONTENT_SMALL1_STYLE)
+        Spacer(modifier = Modifier.weight(1f))
         content()
     }
 }
