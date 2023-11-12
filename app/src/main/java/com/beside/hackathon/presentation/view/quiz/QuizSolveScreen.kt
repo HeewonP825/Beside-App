@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
@@ -35,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import com.beside.hackathon.R
-import com.beside.hackathon.core.utils.Colors
 import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Colors.BUTTON_YELLOW
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
@@ -91,7 +88,7 @@ fun QuizSolveScreen(navController: NavController,viewModel: QuizViewModel){
                                     Toast.makeText(navController.context,"풀지 않는 문제가 있습니다!",Toast.LENGTH_SHORT).show()
                                 }else{
                                     val bundle = bundleOf(
-                                        "name" to resp.userName,
+                                        "name" to resp.nickname,
                                         "count" to resp.correctAnswerCount,
                                         "total" to resp.totalQuestionCount
                                     )
