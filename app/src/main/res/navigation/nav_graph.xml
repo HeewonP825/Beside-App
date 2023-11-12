@@ -90,7 +90,14 @@
         android:id="@+id/recordFragment"
         android:name="com.beside.hackathon.presentation.view.record.RecordFragment"
         android:label="fragment_record"
-        tools:layout="@layout/fragment_record" />
+        tools:layout="@layout/fragment_record" >
+        <action
+            android:id="@+id/action_recordFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+        <action
+            android:id="@+id/action_recordFragment_to_cardNewsRecordFragment"
+            app:destination="@id/cardNewsRecordFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/CardNewsFragment"
@@ -110,5 +117,10 @@
         android:name="com.beside.hackathon.presentation.view.common.WebViewFragment"
         android:label="fragment_webview"
         tools:layout="@layout/fragment_webview" />
+    <fragment
+        android:id="@+id/cardNewsRecordFragment"
+        android:name="com.beside.hackathon.presentation.view.record.CardNewsRecordFragment"
+        android:label="fragment_card_news_record"
+        tools:layout="@layout/fragment_card_news_record" />
 
 </navigation>
