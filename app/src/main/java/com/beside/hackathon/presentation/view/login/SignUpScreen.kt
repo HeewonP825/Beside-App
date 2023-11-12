@@ -84,7 +84,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
 
     val isLogin = viewModel.isLogin.value
     if(isLogin){
-        navController.navigate(R.id.action_login_fragment_to_home_fragment)
+        navController.navigate(R.id.action_signUpFragment_to_home_fragment)
     }
 
     DefaultLayout(
@@ -145,7 +145,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                 Text(
                     idErrorMsg,
                     style = TextStyles.CONTENT_SMALL2_STYLE.copy(
-                        color = if(isNicknameError) Color.Red else Color.Black
+                        color = if(isIdError) Color.Red else Color.Black
                     ),
                     modifier = Modifier.padding(top = 4.dp)
                 )
