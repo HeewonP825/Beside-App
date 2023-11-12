@@ -29,6 +29,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -452,6 +453,9 @@ fun RadioButtonRow(selected: Boolean, onClick: () -> Unit,title:String, content:
             modifier = Modifier.height(20.dp),
             selected = selected,
             onClick = onClick,
+            colors = RadioButtonDefaults.colors(
+                selectedColor = BUTTON_YELLOW
+            )
         )
         Text(title,style = TextStyles.CONTENT_SMALL1_STYLE)
         Spacer(modifier = Modifier.weight(1f))
