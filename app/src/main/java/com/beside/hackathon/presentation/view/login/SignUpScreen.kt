@@ -370,6 +370,9 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                 ){
                     Text("내용 보기 >",style = TextStyles.CONTENT_SMALL1_STYLE,
                         modifier = Modifier.clickable {
+                            val bundle = Bundle()
+                            bundle.putString("url",PRIVACY_URL)
+                            navController.navigate(R.id.action_signUpFragment_to_webViewFragment,bundle)
                         }
                     )
                 }
