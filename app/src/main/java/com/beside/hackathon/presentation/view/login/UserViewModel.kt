@@ -79,7 +79,7 @@ class UserViewModel @Inject constructor(
             kotlin.runCatching {
                 userRepository.signUp(id, password,collage,nickName,interest)
             }.onSuccess {
-                userRepository.login(id, password)
+                login(id, password)
             }.onFailure {
                 it.printStackTrace()
             }

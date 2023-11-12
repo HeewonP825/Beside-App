@@ -48,6 +48,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.beside.hackathon.R
 import com.beside.hackathon.core.utils.Colors.BUTTON_YELLOW
 import com.beside.hackathon.core.utils.Colors.DIVIDER_GRAY
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
@@ -80,6 +81,11 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
     var nicknameErrorMsg by remember { mutableStateOf("") }
 
     val focusManager = LocalFocusManager.current
+
+    val isLogin = viewModel.isLogin.value
+    if(isLogin){
+        navController.navigate(R.id.action_login_fragment_to_home_fragment)
+    }
 
     DefaultLayout(
         title = "회원가입",
