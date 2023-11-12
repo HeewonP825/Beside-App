@@ -42,6 +42,7 @@ class UserViewModel @Inject constructor(
         password: String,
     ) {
         val fcmToken = tokenRepository.getFcmToken()
+        Log.d("user", "fcmToken is ${fcmToken}!!")
 
 
         viewModelScope.launch(Dispatchers.IO) {

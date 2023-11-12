@@ -10,7 +10,11 @@ class TokenRepository @Inject constructor(
 ){
 
     fun getFcmToken(): String? {
-        return prefs.getString("fcmToken", "")
+        return prefs.getString("fcmToken", null)
+    }
+
+    fun saveFcmToken(fcmToken: String) {
+        prefs.edit().putString("fcmToken", fcmToken).apply()
     }
     fun getAccessToken(): String? {
         return prefs.getString("accessToken", null)
