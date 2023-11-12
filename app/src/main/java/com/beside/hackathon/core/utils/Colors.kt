@@ -7,4 +7,6 @@ object Colors {
     val BG_GREY = Color(0xFFF7F7F7)
     val WHITE = Color(0xFFFFFFFF)
     val DIVIDER_GRAY = Color(0xFF9E9E9E)
+    val LIGHT_BLUE = Color(0xFF0A82FE)
+    val RED = Color(0xFFFF2626)
 }
