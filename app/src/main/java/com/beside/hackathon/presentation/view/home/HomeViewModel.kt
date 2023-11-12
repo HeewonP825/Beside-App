@@ -1,5 +1,7 @@
 package com.beside.hackathon.presentation.view.home
 
+import android.provider.ContactsContract.Profile
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,20 +38,24 @@ class HomeViewModel @Inject constructor(
 
     private fun loadData() {
         viewModelScope.launch{
-            val totalResp = homeRepository.getTotalRanking()
+            val userProfile = homeRepository.getProfile()
+
+            val totalResp = homeRepository.getTotalRanking(userProfile.interest)
 
             val totalList = mutableListOf<TotalRankScore>()
             totalList.add(totalResp.myRanking)
             totalList.addAll(totalResp.rankingUsers)
             _dataForTotalRankingFragment.value = totalList
+            Log.d("aaa", totalList.toString())
 
-            val schoolResp = homeRepository.getSchoolRanking()
+            val schoolResp = homeRepository.getSchoolRanking(userProfile.interest)
             val schoolList = mutableListOf<SchoolRankScore>()
             schoolList.add(schoolResp.myRanking)
             schoolList.addAll(schoolResp.rankingUsers)
             _dataForUnivRankingFragment.value = schoolList
         }
     }
+
 
     fun loadProfile() {
         viewModelScope.launch {

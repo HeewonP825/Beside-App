@@ -42,10 +42,14 @@ interface ApiService {
     suspend fun getProfile(): UserProfile
 
     @GET("/rank/total")
-    suspend fun getTotalRanking(): TotalRanking
+    suspend fun getTotalRanking(
+        @Query("interest") interest: String
+    ): TotalRanking
 
     @GET("/rank/school")
-    suspend fun getSchoolRanking(): SchoolRanking
+    suspend fun getSchoolRanking(
+        @Query("interest") interest: String
+    ): SchoolRanking
 
     @GET("/record/quiz")
     suspend fun getQuizHistory(

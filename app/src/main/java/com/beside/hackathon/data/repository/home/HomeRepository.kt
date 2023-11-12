@@ -11,7 +11,7 @@ import javax.inject.Inject
 class HomeRepository @Inject constructor(
     private val apiService: ApiService
 ) {
-    suspend fun getSchoolRanking(): SchoolRanking{
+    suspend fun getSchoolRanking(interest: String): SchoolRanking{
         return SchoolRanking(
             SchoolRankScore(1, "서울대학교", 100.0),
             listOf(
@@ -20,10 +20,10 @@ class HomeRepository @Inject constructor(
                 SchoolRankScore(4, "서울대학교", 100.0),
             )
         )
-        return apiService.getSchoolRanking()
+        return apiService.getSchoolRanking(interest)
     }
 
-    suspend fun getTotalRanking() : TotalRanking{
+    suspend fun getTotalRanking(interest: String) : TotalRanking{
         return TotalRanking(
             TotalRankScore(1, "김민수", "서울대학교", 100.0),
             listOf(
@@ -32,7 +32,7 @@ class HomeRepository @Inject constructor(
                 TotalRankScore(4, "김민수", "서울대학교", 100.0),
             )
         )
-        return apiService.getTotalRanking()
+        return apiService.getTotalRanking(interest)
     }
 
     suspend fun getProfile() : UserProfile {

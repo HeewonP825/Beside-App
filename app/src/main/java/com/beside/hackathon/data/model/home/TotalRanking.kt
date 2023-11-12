@@ -7,7 +7,7 @@ data class TotalRanking(
 
 data class TotalRankScore(
     val rank: Int,
-    val name: String,
+    val nickname: String,
     val schoolName: String,
     val score: Double,
 )
