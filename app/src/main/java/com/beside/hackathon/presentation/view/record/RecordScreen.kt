@@ -143,7 +143,8 @@ fun RecordItem.fromSummary(){
         title = "테스트",
         date = Date(),
         time = 10,
-        imageUrl = null
+        imageUrl = null,
+        isIcon = true
     )
 }
 
@@ -154,6 +155,7 @@ internal fun RecordItemBase(
     date: Date,
     time: Int,
     imageUrl : String? =null,
+    isIcon: Boolean = false,
 ){
     Row(
         modifier = Modifier
@@ -177,11 +179,28 @@ internal fun RecordItemBase(
             )
             Spacer(modifier =Modifier.width(10.dp))
         }
-        Column(modifier = Modifier
-            .fillMaxSize()
-        )
-        {
-            Text(text = title,style = TITLE_TEXT3_STYLE)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            Row(){
+                Column {
+                    Text(text = title, style = TITLE_TEXT3_STYLE)
+                    if(isIcon){
+                        Text("한 주 동안 배웠던 카드뉴스의 내용을\n필기노트로 요약/정리 해보아요:)",
+                            style = CONTENT_SMALL1_STYLE
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                if(isIcon){
+
+                    Image(
+                        painter = painterResource(id = R.drawable.record_icon),
+                        modifier = Modifier.size(70.dp),
+                        contentDescription = null,
+                    )
+                }
+            }
             Spacer(modifier = Modifier.weight(1f))
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -212,7 +231,6 @@ internal fun RecordItemBase(
 internal fun CardnewsTabScreen(){
     DefaultLayout {
         Column(modifier = Modifier.padding(DEFAULT_PADDING_H)){
-            RecordItem.fromCardNews()
             Spacer(modifier = Modifier.height(15.dp))
             RecordItem.fromCardNews()
             Spacer(modifier = Modifier.height(15.dp))
