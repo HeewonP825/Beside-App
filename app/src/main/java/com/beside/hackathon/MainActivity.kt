@@ -60,6 +60,10 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
         })
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val x= intent.getBooleanExtra("isLogin", false)
+        if(x){
+            navController.navigate(R.id.action_login_fragment_to_home_fragment)
+        }
 
     }
 

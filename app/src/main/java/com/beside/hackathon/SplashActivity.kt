@@ -1,5 +1,6 @@
 package com.beside.hackathon
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.beside.hackathon.databinding.ActivitySplashBinding
 
+fun isLoggedIn(context: Context): Boolean {
+    val sharedPreferences = context.getSharedPreferences(
+        "mPref",
+        Context.MODE_PRIVATE
+    )
+    return sharedPreferences.getString("accessToken", "") != ""
+}
 class SplashActivity : AppCompatActivity() {
 
     private val binding: ActivitySplashBinding by lazy {
@@ -38,13 +46,16 @@ class SplashActivity : AppCompatActivity() {
         }
 
         // 스플래시 화면 디스플레이 시간 조절 (예: 2000 밀리초, 즉 2초)
-        setInitialize(2000)
+        setInitialize(10)
     }
 
     private fun setInitialize(delayMillis: Long) {
         handler = Handler(Looper.getMainLooper())
+        val intent =  Intent(this, MainActivity::class.java)
+        val isLogin = isLoggedIn(this)
+        intent.putExtra("isLogin", isLogin)
         handler?.postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(intent)
             finish()
         }, delayMillis)
     }
