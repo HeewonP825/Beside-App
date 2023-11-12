@@ -50,6 +50,13 @@ import com.beside.hackathon.presentation.view.quiz.QuizBox
 fun QuizCorrectScreen(navController: NavController, quizHistoryViewModel: QuizHistoryViewModel, id:Long) {
     val correctQuizList = quizHistoryViewModel.correctQuiz.collectAsState()
     var page by remember { mutableIntStateOf(0) }
+    var initialized by remember { mutableStateOf(false) }
+    if (!initialized) {
+        // Composable 함수가 처음 호출될 때만 실행할 작업
+        initialized = true
+        quizHistoryViewModel.getCorrectQuiz(id)
+    }
+
     DefaultLayout(
         title = correctQuizList.value?.quizName ?: "퀴즈결과",
         backButtonOnClick = {
@@ -64,6 +71,8 @@ fun QuizCorrectScreen(navController: NavController, quizHistoryViewModel: QuizHi
                 QuizCorrectBox(
                     page+1, correctQuizList.value!!.questions[page]
                 )
+            }else{
+                Spacer(modifier = Modifier.weight(1f))
             }
 
             CustomButton(onClick = {
@@ -106,6 +115,7 @@ fun QuizCorrectScreen(navController: NavController, quizHistoryViewModel: QuizHi
                     textAlign = TextAlign.Center
                 )
             }
+            Spacer(modifier =Modifier.height(80.dp))
 
         }
     }

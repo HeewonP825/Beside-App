@@ -22,34 +22,34 @@ class QuizHistoryRepository @Inject constructor(
 
 
     suspend fun getCorrectQuiz(quizId: Long): CorrectQuiz {
-        val option1 = Option(1, "Option 1")
-        val option2 = Option(2, "Option 2")
-        val option3 = Option(3, "Option 3")
-        val option4 = Option(4, "Option 4")
-        val question1 = CorrectQuestion(
-            1,
-            "Question 1",
-            "image_url_1",
-            2,  // Selected Option
-            2,  // Answer Option
-            "Explanation for Question 1",
-            listOf(option1, option2, option3, option4)
-        )
-
-        val question2 = CorrectQuestion(
-            2,
-            "Question 2",
-            "image_url_2",
-            1,  // Selected Option
-            3,  // Answer Option
-            "Explanation for Question 2",
-            listOf(option1, option2, option3, option4)
-        )
-        return CorrectQuiz(
-            1,
-            "Quiz 1",
-            listOf(question1, question2)
-        )
+//        val option1 = Option(1, "Option 1")
+//        val option2 = Option(2, "Option 2")
+//        val option3 = Option(3, "Option 3")
+//        val option4 = Option(4, "Option 4")
+//        val question1 = CorrectQuestion(
+//            1,
+//            "Question 1",
+//            "image_url_1",
+//            2,  // Selected Option
+//            2,  // Answer Option
+//            "Explanation for Question 1",
+//            listOf(option1, option2, option3, option4)
+//        )
+//
+//        val question2 = CorrectQuestion(
+//            2,
+//            "Question 2",
+//            "image_url_2",
+//            1,  // Selected Option
+//            3,  // Answer Option
+//            "Explanation for Question 2",
+//            listOf(option1, option2, option3, option4)
+//        )
+//        return CorrectQuiz(
+//            1,
+//            "Quiz 1",
+//            listOf(question1, question2)
+//        )
         return apiService.getCorrectQuiz(quizId)
     }
 

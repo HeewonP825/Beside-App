@@ -2,7 +2,7 @@ package com.beside.hackathon.data.model.quizhistory
 
 
 data class QuizHistory(
-    val quizId: Int,
+    val quizId: Long,
     val startDate: String,
     val endDate: String,
     val subject:String,
