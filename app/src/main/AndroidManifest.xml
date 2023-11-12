@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -32,10 +30,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name="FCMActivity"
-            android:exported="false" />
-
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="true">
