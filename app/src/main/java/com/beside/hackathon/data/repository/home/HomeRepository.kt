@@ -12,26 +12,18 @@ class HomeRepository @Inject constructor(
     private val apiService: ApiService
 ) {
     suspend fun getSchoolRanking(interest: String): SchoolRanking{
-        return SchoolRanking(
-            SchoolRankScore(1, "서울대학교", 100.0),
-            listOf(
-                SchoolRankScore(2, "서울대학교", 100.0),
-                SchoolRankScore(3, "서울대학교", 100.0),
-                SchoolRankScore(4, "서울대학교", 100.0),
-            )
-        )
+//        return SchoolRanking(
+//            SchoolRankScore(3, "경북대학교", 87.5),
+//            listOf(
+//                SchoolRankScore(1, "서울대학교", 98.9),
+//                SchoolRankScore(2, "연세대학교", 92.1),
+//                SchoolRankScore(4, "한양대학교", 85.5),
+//            )
+//        )
         return apiService.getSchoolRanking(interest)
     }
 
     suspend fun getTotalRanking(interest: String) : TotalRanking{
-        return TotalRanking(
-            TotalRankScore(1, "김민수", "서울대학교", 100.0),
-            listOf(
-                TotalRankScore(2, "김민수", "서울대학교", 100.0),
-                TotalRankScore(3, "김민수", "서울대학교", 100.0),
-                TotalRankScore(4, "김민수", "서울대학교", 100.0),
-            )
-        )
         return apiService.getTotalRanking(interest)
     }
 
