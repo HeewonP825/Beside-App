@@ -1,11 +1,14 @@
 package com.beside.hackathon
 
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowInsetsControllerCompat
@@ -24,6 +27,18 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
     private val splashContent by lazy { findViewById<View>(android.R.id.content) }
 
     lateinit var binding: ActivityMainBinding
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // 알림 권한이 허용됨
+            setupNotification()
+        } else {
+            // 알림 권한이 거부됨
+            // 사용자에게 권한 없이는 알림 기능을 사용할 수 없음을 알리는 로직
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -59,8 +74,41 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         })
 
+        askNotificationPermission()
+
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
+    }
+
+    private fun askNotificationPermission() {
+        // API 레벨 33 이상인 경우에만 POST_NOTIFICATIONS 권한 요청
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            when {
+//                ContextCompat.checkSelfPermission(
+//                    this,
+//                    Manifest.permission.POST_NOTIFICATIONS
+//                ) == PackageManager.PERMISSION_GRANTED -> {
+//                    // 알림 권한이 이미 허용됨
+//                    setupNotification()
+//                }
+//                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
+//                    // UI를 통해 사용자에게 알림 권한의 중요성 설명 후 권한 요청
+//                    // TODO: UI 구현
+//                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+//                }
+//                else -> {
+//                    // 권한 직접 요청
+//                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+//                }
+            }
+        } else {
+            // 오래된 버전의 Android는 별도의 알림 권한 요청이 필요 없음
+            setupNotification()
+        }
+    }
+
+    private fun setupNotification() {
+        // 알림 설정 및 초기화 관련 로직
     }
 
     override fun onPreDraw(): Boolean {
