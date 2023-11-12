@@ -43,7 +43,6 @@ import com.beside.hackathon.data.model.quiz.Option
 import com.beside.hackathon.data.model.quiz.Question
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
-import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
 import kotlinx.coroutines.launch
 
 

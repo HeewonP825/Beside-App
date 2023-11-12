@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.beside.hackathon.databinding.FragmentQuizSolveBinding
-import com.beside.hackathon.presentation.viewmodel.quiz.QuizViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
