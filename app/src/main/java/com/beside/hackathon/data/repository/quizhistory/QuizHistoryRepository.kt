@@ -54,39 +54,7 @@ class QuizHistoryRepository @Inject constructor(
     }
 
     override suspend fun paginate(page: Int): OffsetPagination<QuizHistory> {
-        return OffsetPagination<QuizHistory>(
-            false,
-            listOf(
-                QuizHistory(
-                    1,
-                    "2021-10-10",
-                    "2021-10-10",
-                    "제목",
-                    1,
-                    1,
-                    10.5,
-                ),
-                QuizHistory(
-                    2,
-                    "2021-10-10",
-                    "2021-10-10",
-                    "제목",
-                    1,
-                    1,
-                    10.5,
-                ),QuizHistory(
-                    3,
-                    "2021-10-10",
-                    "2021-10-10",
-                    "제목",
-                    1,
-                    1,
-                    10.5,
-                )
-            )
-        )
-
-        return apiService.getQuizHistory()
+        return apiService.getQuizHistory(page)
     }
 
     override fun getPagingData(): Flow<PagingData<QuizHistory>> {
