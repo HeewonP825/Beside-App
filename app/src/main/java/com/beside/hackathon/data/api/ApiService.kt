@@ -34,8 +34,7 @@ interface ApiService {
     suspend fun getCorrectQuiz(@Path("quizId") quizId: Long): CorrectQuiz
 
     @GET("/cardnews/today")
-    suspend fun getTodayCardNews(): List<CardNewsUrls>
-
+    suspend fun getTodayCardNews(): CardNewsUrls
 
     @GET("/profile")
     suspend fun getProfile(): UserProfile
@@ -48,6 +47,7 @@ interface ApiService {
 
     @GET("/record/quiz")
     suspend fun getQuizHistory(): OffsetPagination<QuizHistory>
+
 
 
 
