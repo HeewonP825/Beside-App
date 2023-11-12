@@ -63,6 +63,18 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    android:text="님"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/user_name" />
+
+                <TextView
                     android:id="@+id/univ_btn"
                     android:layout_width="94dp"
                     android:layout_height="24dp"

@@ -8,7 +8,7 @@
 
     <!-- home -->
     <string name="hello">안녕하세요,</string>
-    <string name="user_name">000님</string>
+    <string name="user_name">000</string>
     <string name="user_univ">경북대학교</string>
 
     <string name="interest_topic">현재 관심 분야</string>
