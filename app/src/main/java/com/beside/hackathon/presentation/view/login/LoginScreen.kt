@@ -43,6 +43,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.beside.hackathon.R
+import com.beside.hackathon.core.utils.Colors
+import com.beside.hackathon.core.utils.Colors.DIVIDER_GRAY
 import com.beside.hackathon.core.utils.TextStyles.BUTTON_TEXT_STYLE
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_TEXT3_STYLE
 import com.beside.hackathon.core.utils.TextStyles.PYEONG_CONTENT1_STLYE
@@ -135,6 +137,10 @@ internal fun MiddlePart(
             label = { Text("아이디",style = PYEONG_CONTENT2_STLYE) },
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.Transparent,
+                focusedIndicatorColor = Colors.BUTTON_YELLOW, // 포커스된 상태의 밑줄 색상
+                unfocusedIndicatorColor = DIVIDER_GRAY, // 포커스되지 않은 상태의 밑줄 색상
+                focusedLabelColor = Colors.BUTTON_YELLOW, // 포커스된 상태의 라벨 색상
+                cursorColor = Colors.BUTTON_YELLOW, // 커서 색상
             ),
             singleLine = true,
             value = id,
@@ -150,6 +156,10 @@ internal fun MiddlePart(
             label = { Text("비밀번호", style = PYEONG_CONTENT2_STLYE) },
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.Transparent,
+                focusedIndicatorColor = Colors.BUTTON_YELLOW, // 포커스된 상태의 밑줄 색상
+                unfocusedIndicatorColor = DIVIDER_GRAY, // 포커스되지 않은 상태의 밑줄 색상
+                focusedLabelColor = Colors.BUTTON_YELLOW, // 포커스된 상태의 라벨 색상
+                cursorColor = Colors.BUTTON_YELLOW, // 커서 색상
             ),
             singleLine = true,
             value = password,
