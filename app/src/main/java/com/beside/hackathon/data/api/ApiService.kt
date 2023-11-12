@@ -10,6 +10,8 @@ import com.beside.hackathon.data.model.quiz.QuizSubmitRequest
 import com.beside.hackathon.data.model.quiz.QuizSubmitResponse
 import com.beside.hackathon.data.model.quizhistory.CorrectQuiz
 import com.beside.hackathon.data.model.quizhistory.QuizHistory
+import com.beside.hackathon.data.model.record.CardNewsRecord
+import com.beside.hackathon.data.model.record.SummaryRecord
 import com.beside.hackathon.data.model.user.JwtToken
 import com.beside.hackathon.data.model.user.LoginRequest
 import com.beside.hackathon.data.model.user.SignUpRequest
@@ -46,7 +48,9 @@ interface ApiService {
     suspend fun getSchoolRanking(): SchoolRanking
 
     @GET("/record/quiz")
-    suspend fun getQuizHistory(): OffsetPagination<QuizHistory>
+    suspend fun getQuizHistory(
+        @Query("pageNum") page: Int,
+    ): OffsetPagination<QuizHistory>
 
 
 
@@ -70,4 +74,15 @@ interface ApiService {
     @GET("/users/nickname")
     @Headers("Auth: false")
     suspend fun nicknameValidation(@Query("nickname") nickname:String):Boolean
+
+
+
+    //
+    @GET("/record/cardnews")
+    suspend fun getCardNewsRecord(@Query("pageNum") page: Int): OffsetPagination<CardNewsRecord>
+
+    @GET("/record/summaries")
+    suspend fun getSummariesRecord(@Query("pageNum") page: Int): OffsetPagination<SummaryRecord>
+
+
 }

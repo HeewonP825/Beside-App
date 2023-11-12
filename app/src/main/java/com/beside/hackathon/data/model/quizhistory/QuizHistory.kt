@@ -6,7 +6,7 @@ data class QuizHistory(
     val startDate: String,
     val endDate: String,
     val subject:String,
-    val correctQuizCount: Int,
-    val wrongQuizCount: Int,
-    val answerRate: Double,
+    val correctCount: Int,
+    val wrongCount: Int,
+    val answerLate: Double,
 )

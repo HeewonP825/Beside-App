@@ -7,12 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.beside.hackathon.databinding.ActivityMainBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -21,20 +19,14 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
 import dagger.hilt.android.AndroidEntryPoint
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
+import com.beside.hackathon.data.repository.user.TokenRepository
+import javax.inject.Inject
 
 
-@SuppressLint("CommitPrefEdits")
-fun saveFcmToken(context: Context, token: String){
-    val sharedPreferences = context.getSharedPreferences(
-        "mPref",
-        Context.MODE_PRIVATE
-    )
-    sharedPreferences.edit().putString("fcmToken", token)
-}
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
+
+    @Inject lateinit var tokenRepository: TokenRepository
 
     private val splashContent by lazy { findViewById<View>(android.R.id.content) }
 
@@ -79,7 +71,8 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
 
             // Get new FCM registration token
             val token = task.result
-            saveFcmToken(this, token!!)
+            Log.d("FCM", token!!)
+            tokenRepository.saveFcmToken(token)
         })
 
         askNotificationPermission()

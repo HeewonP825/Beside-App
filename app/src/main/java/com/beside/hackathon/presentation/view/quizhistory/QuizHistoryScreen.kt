@@ -3,7 +3,6 @@ package com.beside.hackathon.presentation.view.quizhistory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,14 +31,12 @@ import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_H
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_V
-import com.beside.hackathon.core.utils.DataUtils
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL1_STYLE
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL2_STYLE
 import com.beside.hackathon.core.utils.TextStyles.MEDIUMN_TITLE_STYLE
 import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT4_STYLE
 import com.beside.hackathon.data.model.quizhistory.QuizHistory
 import com.beside.hackathon.presentation.view.common.DefaultLayout
-import java.util.Date
 
 @Composable
 fun QuizHistoryScreen(navController: NavController, viewModel: QuizHistoryViewModel) {
@@ -82,9 +79,9 @@ fun QuizHistoryItem.fromModel(model: QuizHistory, onClick: () -> Unit) {
         title = model.subject,
         startDate = model.startDate,
         endDate = model.endDate,
-        correctCount = model.correctQuizCount,
-        wrongCount = model.wrongQuizCount,
-        quizPercent = model.answerRate,
+        correctCount = model.correctCount,
+        wrongCount = model.wrongCount,
+        quizPercent = model.answerLate,
         onClick = onClick
     )
 }
