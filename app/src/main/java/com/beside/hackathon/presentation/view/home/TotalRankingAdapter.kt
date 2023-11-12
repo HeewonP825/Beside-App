@@ -32,7 +32,7 @@ class TotalRankingAdapter(
             }
 
             binding.rankingNumber.text = ranking.rank.toString()
-            binding.userName.text = ranking.name
+            binding.userName.text = ranking.nickname
             binding.userUniv.text = ranking.schoolName
             binding.rankingPoint.text = ranking.score.toString()
         }
