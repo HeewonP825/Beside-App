@@ -33,7 +33,7 @@ class AuthInterceptor @Inject constructor(
             .build()
         val refreshResponse = OkHttpClient().newCall(refreshRequest).execute()
         Log.d("refreshResponse", "refresh :${refreshResponse.code}, ${refreshResponse.body}")
-        if(refreshResponse.code == 201) {
+        if(refreshResponse.code == 200) {
             val gson = Gson()
             val refreshResponseJson = gson.fromJson(refreshResponse.body?.string(), Map::class.java)
             val newAccessToken = refreshResponseJson["accessToken"].toString()
