@@ -1,8 +1,11 @@
 package com.beside.hackathon.presentation.view.record
 
+import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -78,13 +81,13 @@ fun RecordScreen(navController: NavController, recordViewModel: RecordViewModel)
         when (tabIndex) {
             0 -> {
                 Column (modifier = Modifier.fillMaxSize()){
-                    CardnewsTabScreen(recordViewModel)
+                    CardnewsTabScreen(navController, recordViewModel)
                 }
             }
 
             1 -> {
                 Column(modifier = Modifier.fillMaxSize()) {
-                    SummaryTabScreen(recordViewModel)
+                    SummaryTabScreen(navController, recordViewModel)
                 }
             }
         }
@@ -224,14 +227,21 @@ internal fun RecordItemBase(
 }
 
 @Composable
-internal fun CardnewsTabScreen(viewModel: RecordViewModel){
+internal fun CardnewsTabScreen(navController: NavController,viewModel: RecordViewModel){
     val cardnewsList = viewModel.cardNewsRecords.collectAsLazyPagingItems()
     DefaultLayout {
         Column(modifier = Modifier.padding(DEFAULT_PADDING_H)){
             LazyColumn {
                 items(cardnewsList.itemCount) { index ->
                     cardnewsList[index]?.let { record ->
-                        RecordItem.fromCardNews(record)
+                        Box(
+                            modifier = Modifier.clickable {
+//                                val bundle = Bundle()
+//                                navController.navigate(R.id.action_recordFragment_to_webViewFragment, bundle)
+                            }
+                        ){
+                            RecordItem.fromCardNews(record)
+                        }
                         Spacer(modifier = Modifier.height(Constant.DEFAULT_PADDING_V))
                     }
                 }
@@ -241,14 +251,22 @@ internal fun CardnewsTabScreen(viewModel: RecordViewModel){
 }
 
 @Composable
-internal fun SummaryTabScreen(viewModel: RecordViewModel){
+internal fun SummaryTabScreen(navController: NavController, viewModel: RecordViewModel){
     val summaryList = viewModel.summaryRecords.collectAsLazyPagingItems()
     DefaultLayout {
         Column(modifier = Modifier.padding(DEFAULT_PADDING_H)){
             LazyColumn {
                 items(summaryList.itemCount) { index ->
                     summaryList[index]?.let { record ->
-                        RecordItem.fromSummary(record)
+                        Box(
+                            modifier = Modifier.clickable {
+                                val bundle = Bundle()
+                                bundle.putString("url", record.content)
+                                navController.navigate(R.id.action_recordFragment_to_webViewFragment, bundle)
+                            }
+                        ){
+                            RecordItem.fromSummary(record)
+                        }
                         Spacer(modifier = Modifier.height(Constant.DEFAULT_PADDING_V))
                     }
                 }

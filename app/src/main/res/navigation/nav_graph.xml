@@ -90,7 +90,11 @@
         android:id="@+id/recordFragment"
         android:name="com.beside.hackathon.presentation.view.record.RecordFragment"
         android:label="fragment_record"
-        tools:layout="@layout/fragment_record" />
+        tools:layout="@layout/fragment_record" >
+        <action
+            android:id="@+id/action_recordFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/CardNewsFragment"
