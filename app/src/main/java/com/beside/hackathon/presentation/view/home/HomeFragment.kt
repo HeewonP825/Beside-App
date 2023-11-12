@@ -66,6 +66,18 @@ class HomeFragment : Fragment() {
 
         // 현재 날짜와 요일 확인
         setupViewsBasedOnDayOfWeek()
+
+        homeViewModel.profile.observe(viewLifecycleOwner) { userProfile ->
+            // UI 업데이트 로직
+            binding.userName.text = userProfile.nickname
+            binding.univBtn.text = userProfile.schoolName
+            binding.topic.text = userProfile.interest
+            binding.readCardnews.text = userProfile.readNewsCount.toString()
+            binding.participateQuiz.text = userProfile.enteredQuizCount.toString()
+            binding.correctQuizRate.text = "${userProfile.correctRate}%"
+        }
+
+        homeViewModel.loadProfile()
     }
 
     private fun setupViewPager() {
@@ -118,3 +130,4 @@ class HomeFragment : Fragment() {
 //        }
     }
 }
+

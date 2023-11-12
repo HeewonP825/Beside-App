@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beside.hackathon.data.model.home.TotalRankScore
 import com.beside.hackathon.data.model.home.SchoolRankScore
+import com.beside.hackathon.data.model.home.UserProfile
 import com.beside.hackathon.data.repository.home.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -26,6 +27,9 @@ class HomeViewModel @Inject constructor(
     private val _dataForUnivRankingFragment = MutableLiveData<List<SchoolRankScore>>()
     val dataForUnivRankingFragment: LiveData<List<SchoolRankScore>> = _dataForUnivRankingFragment
 
+    private val _profile = MutableLiveData<UserProfile>()
+    val profile: LiveData<UserProfile> = _profile
+
     init {
         loadData()
     }
@@ -44,6 +48,17 @@ class HomeViewModel @Inject constructor(
             schoolList.add(schoolResp.myRanking)
             schoolList.addAll(schoolResp.rankingUsers)
             _dataForUnivRankingFragment.value = schoolList
+        }
+    }
+
+    fun loadProfile() {
+        viewModelScope.launch {
+            try {
+                val userProfile = homeRepository.getProfile()
+                _profile.value = userProfile
+            } catch (e: Exception) {
+                // 에러 처리
+            }
         }
     }
 
