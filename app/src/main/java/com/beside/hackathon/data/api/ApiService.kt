@@ -1,6 +1,7 @@
 package com.beside.hackathon.data.api
 
 import com.beside.hackathon.data.model.cardnews.CardNewsUrls
+import com.beside.hackathon.data.model.cardnews.SummaryUrls
 import com.beside.hackathon.data.model.common.OffsetPagination
 import com.beside.hackathon.data.model.home.SchoolRanking
 import com.beside.hackathon.data.model.home.TotalRanking
@@ -37,6 +38,8 @@ interface ApiService {
 
     @GET("/cardnews/today")
     suspend fun getTodayCardNews(): CardNewsUrls
+    @GET("/summary/today")
+    suspend fun getTodaySummary(): SummaryUrls
 
     @GET("/profile")
     suspend fun getProfile(): UserProfile
