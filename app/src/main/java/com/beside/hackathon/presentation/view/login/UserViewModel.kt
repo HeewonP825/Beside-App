@@ -73,7 +73,7 @@ class UserViewModel @Inject constructor(
         return false
     }
     fun signUp(id: String, password: String, collage: String, nickName: String, interest: Interest) {
-        if(!isNicknameValid.value) throw Exception("id is not valid")
+        if(!_isIdValid.value) throw Exception("id is not valid")
         if(!_isNicknameValid.value) throw Exception("nickname is not valid")
         viewModelScope.launch {
             kotlin.runCatching {

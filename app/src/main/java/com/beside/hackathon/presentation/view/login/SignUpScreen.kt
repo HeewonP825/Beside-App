@@ -82,6 +82,9 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
 
     val focusManager = LocalFocusManager.current
 
+    val isIdValid = viewModel.isIdValid.value
+    val isNicknameValid = viewModel.isNicknameValid.value
+
     val isLogin = viewModel.isLogin.value
     if(isLogin){
         navController.navigate(R.id.action_signUpFragment_to_home_fragment)
@@ -127,7 +130,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     },
                     isError = isIdError,
                 )
-                DuplicateButton(onClick = {
+                DuplicateButton(isFilled = isIdValid, onClick = {
                     coroutineScope.launch{
                         val resp = viewModel.idValidCheck(id)
                         if(!resp){
@@ -135,7 +138,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                             idErrorMsg = "사용 불가능한 아이디입니다."
                         }else{
                             isIdError = false
-                            idErrorMsg = "사용 가능한 아이디입니다."
+                            idErrorMsg = ""
                         }
 
                     }
@@ -228,7 +231,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     },
                     isError = isNicknameError,
                 )
-                DuplicateButton(onClick = {
+                DuplicateButton(isFilled = isNicknameValid,onClick = {
                     coroutineScope.launch{
                         val resp = viewModel.nicknameValidCheck(nickName)
                         if(!resp){
@@ -236,7 +239,7 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                             nicknameErrorMsg = "사용 불가능한 닉네임입니다."
                         }else{
                             isNicknameError = false
-                            nicknameErrorMsg = "사용 가능한 닉네임입니다."
+                            nicknameErrorMsg = ""
                         }
                     }
                 })
@@ -376,11 +379,11 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
 }
 
 @Composable
-fun DuplicateButton(onClick : () -> Unit){
+fun DuplicateButton(isFilled: Boolean = false,onClick : () -> Unit){
     Text(
         "중복확인",
         style = CONTENT_SMALL2_STYLE.copy(
-            color = BUTTON_YELLOW
+            color = if(isFilled) Color.White else BUTTON_YELLOW
         ),
         modifier = Modifier
             .padding(end = 10.dp)
@@ -388,8 +391,8 @@ fun DuplicateButton(onClick : () -> Unit){
                 onClick()
             }
             .background(
-                color = Color.Transparent,
-                shape = RoundedCornerShape(4.dp)
+                color = if(isFilled) BUTTON_YELLOW else Color.Transparent,
+                shape = RoundedCornerShape(BORDER_RADIUS)
             )
             .border(
                 width = 1.dp,
