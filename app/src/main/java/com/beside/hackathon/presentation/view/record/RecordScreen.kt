@@ -30,6 +30,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -58,7 +59,8 @@ fun RecordScreen(navController: NavController, recordViewModel: RecordViewModel)
                 Tab(
                     modifier = Modifier.background(Color.White),
                     text = { Text(title,style=TITLE_TEXT_STYLE.copy(
-                        color = if(tabIndex == index) BUTTON_YELLOW else Color.Black
+                        color = if(tabIndex == index) BUTTON_YELLOW else Color.Black,
+                        fontWeight = if(tabIndex == index) FontWeight.W700 else FontWeight.W500
                     )) },
                     selected = tabIndex == index,
                     onClick = { tabIndex = index }
