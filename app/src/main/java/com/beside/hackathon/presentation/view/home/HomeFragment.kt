@@ -32,9 +32,6 @@ class HomeFragment : Fragment() {
         // navController 초기화
         navController = findNavController()
 
-//        val homeViewModel =
-//            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         setupViewPager()

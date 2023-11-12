@@ -20,8 +20,10 @@ import com.beside.hackathon.databinding.FragmentCardNewsBinding
 import com.beside.hackathon.databinding.FragmentHomeBinding
 import com.beside.hackathon.presentation.view.home.HomeViewModel
 import com.beside.hackathon.presentation.view.home.ViewPagerFragmentAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
+@AndroidEntryPoint
 class CardNewsFragment : Fragment() {
     private var _binding: FragmentCardNewsBinding? = null
     private lateinit var navController: NavController
@@ -57,8 +59,12 @@ class CardNewsFragment : Fragment() {
             findNavController().navigate(R.id.action_cardNewsFragment_to_homeFragment)
         }
 
-        // 데이터 로드
-        cardNewsViewModel.loadCardNewsUrls()
+        try {
+        cardNewsViewModel.cardNewsUrls.observe(viewLifecycleOwner) { urls ->
+            binding.cardnewsRv.adapter = CardNewsAdapter(urls)
+        }} catch (e: Exception) {
+            Log.e("CardNewsFragment", "api binding error: ${e.message}", e)
+        }
 
         binding.cardnewsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
