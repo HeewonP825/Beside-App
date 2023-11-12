@@ -233,10 +233,10 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                         val resp = viewModel.nicknameValidCheck(nickName)
                         if(!resp){
                             isNicknameError = true
-                            nicknameErrorMsg = "사용 불가능한 아이디입니다."
+                            nicknameErrorMsg = "사용 불가능한 닉네임입니다."
                         }else{
                             isNicknameError = false
-                            nicknameErrorMsg = "사용 가능한 아이디입니다."
+                            nicknameErrorMsg = "사용 가능한 닉네임입니다."
                         }
                     }
                 })
