@@ -10,13 +10,19 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Divider
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -26,8 +32,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
@@ -38,29 +46,34 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.beside.hackathon.core.utils.Colors
-import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Colors.BUTTON_YELLOW
 import com.beside.hackathon.core.utils.Colors.DIVIDER_GRAY
-import com.beside.hackathon.core.utils.Constant
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_H
 import com.beside.hackathon.core.utils.TextStyles
 import com.beside.hackathon.core.utils.TextStyles.CONTENT_SMALL2_STYLE
+import com.beside.hackathon.data.model.user.Interest
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var collage by remember { mutableStateOf("") }
     var nickName by remember { mutableStateOf("") }
-    var interest by remember { mutableStateOf("") }
+    var dropDownMenuExpanded by remember { mutableStateOf(false) }
+    var interest : Interest? by remember { mutableStateOf(null) }
     var ageAgree by remember { mutableStateOf(false) }
     var termsAgree by remember { mutableStateOf(false) }
     var privacyAgree by remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
+
+    var idErrorMsg by remember { mutableStateOf("") }
+    var nicknameErrorMsg by remember { mutableStateOf("") }
 
     val focusManager = LocalFocusManager.current
 
@@ -78,12 +91,15 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                 contentAlignment = Alignment.CenterEnd,
             ) {
                 TextField(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING_H/2),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = DEFAULT_PADDING_H / 2),
                     label = { Text("아아디", style = TextStyles.PYEONG_CONTENT2_STLYE) },
                     colors = TextFieldDefaults.textFieldColors(
                         containerColor = Color.Transparent,
                         focusedIndicatorColor = DIVIDER_GRAY,
                         unfocusedIndicatorColor = DIVIDER_GRAY,
+                        focusedLabelColor = Color.Black,
                     ),
                     singleLine = true,
                     value = id,
@@ -98,25 +114,49 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                     }),
                     onValueChange = {
                         id = it
-                    }
+                    },
+                    isError = idErrorMsg.isNotEmpty(),
                 )
                 DuplicateButton(onClick = {
+                    coroutineScope.launch{
+                        val resp = viewModel.idValidCheck(id)
+                        if(!resp){
+                            idErrorMsg = "사용 불가능한 아이디입니다."
+                        }else{
+                            idErrorMsg = ""
+                        }
 
+                    }
                 })
+            }
+            if(idErrorMsg.isNotEmpty()){
+                Text(
+                    idErrorMsg,
+                    style = TextStyles.CONTENT_SMALL2_STYLE.copy(
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
             TextField(
 
-                modifier = Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING_H/2),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = DEFAULT_PADDING_H / 2),
                 label = { Text("비밀번호", style = TextStyles.PYEONG_CONTENT2_STLYE) },
                 colors = TextFieldDefaults.textFieldColors(
                     focusedIndicatorColor = DIVIDER_GRAY,
                     unfocusedIndicatorColor = DIVIDER_GRAY,
                     containerColor = Color.Transparent,
+                    focusedLabelColor = Color.Black,
                 ),
                 singleLine = true,
                 value = password,
                 visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Next
+                ),
                 keyboardActions = KeyboardActions(onDone = {
                     focusManager.moveFocus(FocusDirection.Next)
                 }),
@@ -125,12 +165,15 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                 }
             )
             TextField(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING_H/2),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = DEFAULT_PADDING_H / 2),
                 label = { Text("소속 학교",style = TextStyles.PYEONG_CONTENT2_STLYE) },
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.Transparent,
                     focusedIndicatorColor = DIVIDER_GRAY,
                     unfocusedIndicatorColor = DIVIDER_GRAY,
+                    focusedLabelColor = Color.Black,
                 ),
                 singleLine = true,
                 value = collage,
@@ -147,51 +190,117 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
                 contentAlignment = Alignment.CenterEnd,
             ) {
                 TextField(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING_H/2),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = DEFAULT_PADDING_H / 2),
                     label = { Text("닉네임", style = TextStyles.PYEONG_CONTENT2_STLYE) },
                     colors = TextFieldDefaults.textFieldColors(
                         containerColor = Color.Transparent,
                         focusedIndicatorColor = DIVIDER_GRAY,
                         unfocusedIndicatorColor = DIVIDER_GRAY,
+                        focusedLabelColor = Color.Black,
                     ),
                     singleLine = true,
                     value = nickName,
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Next
+                        imeAction = ImeAction.Done
                     ),
-                    keyboardActions = KeyboardActions(onDone = {
-                        focusManager.moveFocus(
-                            FocusDirection.Next
-                        )
-                    }),
+//                    keyboardActions = KeyboardActions(onDone = {
+//                        focusManager.moveFocus(
+//                            FocusDirection.Enter
+//                        )
+//                    }),
                     onValueChange = {
                         nickName = it
-                    }
+                    },
+                    isError = nicknameErrorMsg.isNotEmpty(),
                 )
                 DuplicateButton(onClick = {
-
+                    coroutineScope.launch{
+                        val resp = viewModel.nicknameValidCheck(nickName)
+                        if(!resp){
+                            nicknameErrorMsg = "사용 불가능한 아이디입니다."
+                        }else{
+                            nicknameErrorMsg = ""
+                        }
+                    }
                 })
             }
-            TextField(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING_H/2),
-                label = { Text("관심분야",style = TextStyles.PYEONG_CONTENT2_STLYE) },
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
-                    focusedIndicatorColor = DIVIDER_GRAY,
-                    unfocusedIndicatorColor = DIVIDER_GRAY,
-                ),
-                singleLine = true,
-                value = interest,
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Next
-                ),
-                keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Next) }),
-                onValueChange = {
-                    interest = it
+            if(nicknameErrorMsg.isNotEmpty()){
+                Text(
+                    nicknameErrorMsg,
+                    style = TextStyles.CONTENT_SMALL2_STYLE.copy(
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.BottomEnd,
+            ){
+                TextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = DEFAULT_PADDING_H / 2),
+                    label = { Text("관심 분야",style = TextStyles.PYEONG_CONTENT2_STLYE) },
+                    colors = TextFieldDefaults.textFieldColors(
+                        containerColor = Color.Transparent,
+                        focusedIndicatorColor = DIVIDER_GRAY,
+                        unfocusedIndicatorColor = DIVIDER_GRAY,
+                        disabledIndicatorColor = DIVIDER_GRAY,
+                        disabledTextColor = Color.Black,
+                        disabledLabelColor = Color.Black
+                    ),
+                    enabled = false,
+                    singleLine = true,
+                    value = interest?.korean ?: "",
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    ),
+                    keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Next) }),
+                    onValueChange = {
+
+                    }
+                )
+                IconButton(onClick = { dropDownMenuExpanded = !dropDownMenuExpanded }) {
+                    Icon(
+                        imageVector = Icons.Filled.KeyboardArrowDown,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
                 }
-            )
+
+                Box {
+                    DropdownMenu(
+                        modifier = Modifier.wrapContentSize().background(color = Color.White),
+                        expanded = dropDownMenuExpanded,
+                        onDismissRequest = {
+                            dropDownMenuExpanded = false
+                        }) {
+                        Interest.values().forEach {
+                            DropdownMenuItem(
+//                                modifier = Modifier.background(
+//                                    color = Color.White
+//                                ),
+                                text = {
+                                    Text(
+                                        text = it.korean,
+                                        style = TextStyles.CONTENT_SMALL1_STYLE
+                                    )
+                                },
+                                onClick = {
+                                    interest = it
+                                    dropDownMenuExpanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+
+            }
             Spacer(modifier = Modifier.height(60.dp))
             Column (
                 modifier = Modifier.fillMaxWidth(),
@@ -241,7 +350,10 @@ fun SignUpScreen(navController: NavController,viewModel: UserViewModel) {
             Spacer(modifier = Modifier.height(40.dp))
 
             CustomButton(onClick = {
-                viewModel.signUp(id,password,collage,nickName,interest)
+                if(id.isEmpty() || password.isEmpty() || collage.isEmpty() || nickName.isEmpty() || interest == null){
+                    return@CustomButton
+                }
+                viewModel.signUp(id,password,collage,nickName,interest!!)
             }) {
                 Text("회원가입",style = TextStyles.BUTTON_TEXT_STYLE)
             }

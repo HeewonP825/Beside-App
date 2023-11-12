@@ -1,6 +1,7 @@
 package com.beside.hackathon.data.repository.user
 
 import com.beside.hackathon.data.api.ApiService
+import com.beside.hackathon.data.model.user.Interest
 import com.beside.hackathon.data.model.user.JwtToken
 import com.beside.hackathon.data.model.user.LoginRequest
 import com.beside.hackathon.data.model.user.SignUpRequest
