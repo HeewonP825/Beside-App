@@ -129,7 +129,7 @@ object RecordItem
 @Composable
 fun RecordItem.fromCardNews(model: CardNewsRecord){
     RecordItemBase(
-        title = "${model.publishedDate} 카드뉴스",
+        title = model.title,
         date = model.publishedDate,
         time = 10,
         imageUrl = if(model.urls.isNotEmpty()) model.urls[0] else null
