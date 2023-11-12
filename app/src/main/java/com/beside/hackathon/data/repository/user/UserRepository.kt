@@ -10,8 +10,8 @@ import javax.inject.Inject
 class UserRepository @Inject constructor(
     private val apiService: ApiService
 ) {
-    suspend fun login(email: String, password: String) : JwtToken {
-        val body = LoginRequest(email, password)
+    suspend fun login(email: String, password: String,fcmToken:String) : JwtToken {
+        val body = LoginRequest(email, password,fcmToken)
         return apiService.login(body)
     }
 

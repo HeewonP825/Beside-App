@@ -1,6 +1,7 @@
 package com.beside.hackathon.presentation.view.login
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.beside.hackathon.data.model.user.Interest
 import com.beside.hackathon.data.repository.user.TokenRepository
 import com.beside.hackathon.data.repository.user.UserRepository
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UserViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val tokenRepository: TokenRepository
+    private val tokenRepository: TokenRepository,
 ) : ViewModel(){
 
 
@@ -36,11 +39,14 @@ class UserViewModel @Inject constructor(
     }
     fun login(
         username: String,
-        password: String
+        password: String,
     ) {
+        val fcmToken = tokenRepository.getFcmToken()
+
+
         viewModelScope.launch(Dispatchers.IO) {
             try{
-                val jwtToken = userRepository.login(username, password)
+                val jwtToken = userRepository.login(username, password,fcmToken!!)
                 tokenRepository.setAccessToken(jwtToken.accessToken)
                 tokenRepository.setRefreshToken(jwtToken.refreshToken)
                 _isLogin.value = true

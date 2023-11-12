@@ -8,6 +8,10 @@ import javax.inject.Singleton
 class TokenRepository @Inject constructor(
     private val prefs: SharedPreferences
 ){
+
+    fun getFcmToken(): String? {
+        return prefs.getString("fcmToken", "")
+    }
     fun getAccessToken(): String? {
         return prefs.getString("accessToken", null)
     }

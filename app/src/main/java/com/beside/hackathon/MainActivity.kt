@@ -21,7 +21,18 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
 import dagger.hilt.android.AndroidEntryPoint
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
 
+
+@SuppressLint("CommitPrefEdits")
+fun saveFcmToken(context: Context, token: String){
+    val sharedPreferences = context.getSharedPreferences(
+        "mPref",
+        Context.MODE_PRIVATE
+    )
+    sharedPreferences.edit().putString("fcmToken", token)
+}
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
 
@@ -68,11 +79,7 @@ class MainActivity : AppCompatActivity(), ViewTreeObserver.OnPreDrawListener {
 
             // Get new FCM registration token
             val token = task.result
-
-            // Log and toast
-            val msg = token.toString()
-            Log.d("FCM", msg)
-            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            saveFcmToken(this, token!!)
         })
 
         askNotificationPermission()
