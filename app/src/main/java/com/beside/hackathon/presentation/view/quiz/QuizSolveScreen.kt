@@ -11,10 +11,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -32,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import com.beside.hackathon.R
+import com.beside.hackathon.core.utils.Colors
 import com.beside.hackathon.core.utils.Colors.BG_GREY
 import com.beside.hackathon.core.utils.Colors.BUTTON_YELLOW
 import com.beside.hackathon.core.utils.Constant.BORDER_RADIUS
@@ -155,8 +159,9 @@ fun QuizBox(page: Int, questions: List<Question>, quizSubmitNumber: List<Int?>, 
             style = TITLE_TEXT2_STYLE
         )
 
+        Spacer(modifier = Modifier.height(20.dp))
         questions[page].options.forEach { opt->
-            CheckBoxRow(opt.content, quizSubmitNumber[page] == opt.optionId) {
+            CheckBoxRow(opt.content, quizSubmitNumber[page] == opt.optionId, opt.optionId ) {
                 onClick(opt.optionId)
             }
         }
@@ -193,15 +198,27 @@ fun preview(){
 }
 
 @Composable
-fun CheckBoxRow(text: String, value: Boolean, onClick: (Any) -> Unit) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Checkbox(
-            checked = value,
-            onCheckedChange = onClick,
-            colors = CheckboxDefaults.colors(
-                checkedColor = BUTTON_YELLOW
+fun CheckBoxRow(text: String, value: Boolean, id: Int, onClick: (Any) -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(vertical = 5.dp, horizontal = 10.dp)) {
+//        Checkbox(
+//            checked = value,
+//            onCheckedChange = onClick,
+//            colors = CheckboxDefaults.colors(
+//                checkedColor = BUTTON_YELLOW
+//            )
+//        )
+        RadioButton(
+            modifier = Modifier.size(12.dp),
+            selected = value,
+            onClick = {
+                onClick(id)
+            },
+            colors = RadioButtonDefaults.colors(
+                selectedColor = BUTTON_YELLOW
             )
         )
+        Spacer(modifier = Modifier.width(10.dp))
         ClickableText(
             text = AnnotatedString(text), onClick = onClick, modifier = Modifier.fillMaxWidth()
         )
