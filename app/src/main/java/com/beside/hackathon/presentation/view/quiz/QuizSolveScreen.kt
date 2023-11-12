@@ -1,5 +1,6 @@
 package com.beside.hackathon.presentation.view.quiz
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -40,7 +41,7 @@ import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_H
 import com.beside.hackathon.core.utils.Constant.DEFAULT_PADDING_V
 import com.beside.hackathon.core.utils.TextStyles.BUTTON_TEXT_STYLE
 import com.beside.hackathon.core.utils.TextStyles.TITLE_TEXT2_STYLE
-import com.beside.hackathon.data.model.quiz.Option
+import com.beside.hackathon.data.model.quiz.Answer
 import com.beside.hackathon.data.model.quiz.Question
 import com.beside.hackathon.presentation.component.CustomButton
 import com.beside.hackathon.presentation.view.common.DefaultLayout
@@ -71,9 +72,10 @@ fun QuizSolveScreen(navController: NavController,viewModel: QuizViewModel){
                 QuizBox(
                     page = page,
                     questions = quizState.value.questions,
-                    quizSubmitNumber = quizSubmitNumber.value,
+                    quizSubmitAnswers = quizSubmitNumber.value,
                     onClick = {
-                        viewModel.selectOption(page, it)
+                        Log.d("QuizSolveScreen", "질문id: ${quizState.value.questions[page].questionId}, 선택id: $it")
+                        viewModel.selectOption(quizState.value.questions[page].questionId, it)
                     }
                 )
             }
@@ -141,7 +143,7 @@ fun QuizSolveScreen(navController: NavController,viewModel: QuizViewModel){
 }
 
 @Composable
-fun QuizBox(page: Int, questions: List<Question>, quizSubmitNumber: List<Int?>, onClick: (Int) -> Unit){
+fun QuizBox(page: Int, questions: List<Question>, quizSubmitAnswers: List<Answer?>, onClick: (Int) -> Unit){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -158,8 +160,10 @@ fun QuizBox(page: Int, questions: List<Question>, quizSubmitNumber: List<Int?>, 
 
         Spacer(modifier = Modifier.height(20.dp))
         questions[page].options.forEach { opt->
-            CheckBoxRow(opt.content, quizSubmitNumber[page] == opt.optionId, opt.optionId ) {
+            CheckBoxRow(opt.content, quizSubmitAnswers[page]?.optionId == opt.optionId, opt.optionId ) {
                 onClick(opt.optionId)
+                Log.d("QuizSolveScreen", "opt: ${opt.optionId}")
+                Log.d("QuizSolveScreen", "q : ${questions[page]}, submit: ${quizSubmitAnswers[page]}")
             }
         }
         Spacer(modifier = Modifier.height(80.dp))
@@ -169,29 +173,29 @@ fun QuizBox(page: Int, questions: List<Question>, quizSubmitNumber: List<Int?>, 
 @Preview
 @Composable
 fun preview(){
-    QuizBox(
-        page = 0,
-        questions = listOf(
-            Question(
-                questionId = 1,
-                questionName = "테스트",
-                options = listOf(
-                    Option(
-                        optionId = 1,
-                        content = "테스트1"
-                    ),
-                    Option(
-                        optionId = 2,
-                        content = "테스트2"
-                    )
-                )
-            )
-        ),
-        quizSubmitNumber = listOf(1),
-        onClick = {
-
-        }
-    )
+//    QuizBox(
+//        page = 0,
+//        questions = listOf(
+//            Question(
+//                questionId = 1,
+//                questionName = "테스트",
+//                options = listOf(
+//                    Option(
+//                        optionId = 1,
+//                        content = "테스트1"
+//                    ),
+//                    Option(
+//                        optionId = 2,
+//                        content = "테스트2"
+//                    )
+//                )
+//            )
+//        ),
+//        quizSubmitNumber = listOf(1),
+//        onClick = {
+//
+//        }
+//    )
 }
 
 @Composable
