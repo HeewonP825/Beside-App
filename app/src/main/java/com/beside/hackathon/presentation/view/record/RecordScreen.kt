@@ -236,8 +236,9 @@ internal fun CardnewsTabScreen(navController: NavController,viewModel: RecordVie
                     cardnewsList[index]?.let { record ->
                         Box(
                             modifier = Modifier.clickable {
-//                                val bundle = Bundle()
-//                                navController.navigate(R.id.action_recordFragment_to_webViewFragment, bundle)
+                                val bundle = Bundle()
+                                bundle.putStringArrayList("urls", ArrayList(record.urls))
+                                navController.navigate(R.id.action_recordFragment_to_cardNewsRecordFragment, bundle)
                             }
                         ){
                             RecordItem.fromCardNews(record)
