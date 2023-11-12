@@ -34,20 +34,7 @@ class CardNewsFragment : Fragment() {
         // navController 초기화
         navController = findNavController()
 
-//        val cardNewsViewModel =
-//            ViewModelProvider(this).get(CardNewsViewModel::class.java)
-
         _binding = FragmentCardNewsBinding.inflate(inflater, container, false)
-
-        binding.backBtn.setOnClickListener {
-            navController.navigate(R.id.action_cardNewsFragment_to_homeFragment)
-        }
-
-        val recyclerView: RecyclerView = requireView().findViewById(R.id.cardnews_rv)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
-        val cardNewsUrls = CardNewsUrls(listOf("url1", "url2", "url3"))
-        recyclerView.adapter = CardNewsAdapter(cardNewsUrls.contentUrls)
 
         val root: View = binding.root
 
@@ -56,6 +43,19 @@ class CardNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // RecyclerView 설정
+        binding.cardnewsRv.layoutManager = LinearLayoutManager(context)
+        cardNewsViewModel.cardNewsUrls.observe(viewLifecycleOwner) { urls ->
+            binding.cardnewsRv.adapter = CardNewsAdapter(urls)
+        }
+
+        binding.backBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_cardNewsFragment_to_homeFragment)
+        }
+
+        // 데이터 로드
+        cardNewsViewModel.loadCardNewsUrls()
 
     }
 }

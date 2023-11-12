@@ -7,18 +7,13 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/cardNews_img"
-        android:layout_width="1080px"
-        android:layout_height="1080px"
-        android:layout_gravity="top"
-        android:gravity="top"
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="410dp"
         android:scaleType="fitCenter"
         android:src="@drawable/cardnews_sample"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

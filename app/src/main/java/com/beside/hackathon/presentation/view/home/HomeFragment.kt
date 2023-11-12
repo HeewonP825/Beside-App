@@ -96,25 +96,25 @@ class HomeFragment : Fragment() {
 
     private fun setupViewsBasedOnDayOfWeek() {
         val today = Calendar.getInstance()
-        when (today.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.SUNDAY -> {
-                // 일요일일 경우
-                binding.todayCardnews.visibility = View.GONE
-                binding.todayQuiz.visibility = View.VISIBLE
-                binding.todayCardnewsView.visibility = View.GONE
-                binding.todayQuizView.visibility = View.VISIBLE
-                binding.cardnewsBtn.visibility = View.GONE
-                binding.quizBtn.visibility = View.VISIBLE
-            }
-            else -> {
-                // 월요일부터 토요일일 경우
-                binding.todayCardnews.visibility = View.VISIBLE
-                binding.todayQuiz.visibility = View.GONE
-                binding.todayCardnewsView.visibility = View.VISIBLE
-                binding.todayQuizView.visibility = View.GONE
-                binding.cardnewsBtn.visibility = View.VISIBLE
-                binding.quizBtn.visibility = View.GONE
-            }
-        }
+//        when (today.get(Calendar.DAY_OF_WEEK)) {
+//            Calendar.SUNDAY -> {
+//                // 일요일일 경우
+//                binding.todayCardnews.visibility = View.GONE
+//                binding.todayQuiz.visibility = View.VISIBLE
+//                binding.todayCardnewsView.visibility = View.GONE
+//                binding.todayQuizView.visibility = View.VISIBLE
+//                binding.cardnewsBtn.visibility = View.GONE
+//                binding.quizBtn.visibility = View.VISIBLE
+//            }
+//            else -> {
+//                // 월요일부터 토요일일 경우
+//                binding.todayCardnews.visibility = View.VISIBLE
+//                binding.todayQuiz.visibility = View.GONE
+//                binding.todayCardnewsView.visibility = View.VISIBLE
+//                binding.todayQuizView.visibility = View.GONE
+//                binding.cardnewsBtn.visibility = View.VISIBLE
+//                binding.quizBtn.visibility = View.GONE
+//            }
+//        }
     }
 }
