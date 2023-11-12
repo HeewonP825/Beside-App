@@ -27,7 +27,7 @@ class AuthInterceptor @Inject constructor(
             prefs.getString("refreshToken", "")
         }
         val refreshRequest = Request.Builder()
-            .url("$BASE_URL/auth/token")
+            .url("$BASE_URL/reissue")
             .post("".toRequestBody())
             .addHeader("authorization", "Bearer ${refreshToken!!}")
             .build()
