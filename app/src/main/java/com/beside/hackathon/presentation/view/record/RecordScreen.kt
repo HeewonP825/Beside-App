@@ -19,6 +19,8 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults.Indicator
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -61,7 +63,17 @@ fun RecordScreen(navController: NavController, recordViewModel: RecordViewModel)
     val tabs = listOf("카드뉴스", "필기노트")
     Column() {
         TabRow(
-            selectedTabIndex = tabIndex
+            selectedTabIndex = tabIndex,
+            indicator = { tabPositions ->
+                // 여기서 인디케이터의 모양과 색상을 정의합니다.
+                // 예시로는 단순한 노란색 인디케이터를 만들어봅니다.
+                Indicator(
+                    color = BUTTON_YELLOW,
+                    modifier = Modifier
+                        .tabIndicatorOffset(tabPositions[tabIndex])
+                        .height(2.5.dp)
+                )
+            }
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
@@ -97,7 +109,18 @@ fun RecordScreenPreview(){
     val tabs = listOf("카드뉴스", "필기노트")
     Column() {
         TabRow(
-            selectedTabIndex = tabIndex
+            selectedTabIndex = tabIndex,
+            indicator = { tabPositions ->
+                // 여기서 인디케이터의 모양과 색상을 정의합니다.
+                // 예시로는 단순한 노란색 인디케이터를 만들어봅니다.
+                Indicator(
+                    color = BUTTON_YELLOW,
+                    modifier = Modifier
+                        .tabIndicatorOffset(tabPositions[tabIndex])
+                        .height(5.dp)
+                )
+            }
+
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
