@@ -36,6 +36,14 @@
 | views | single-activity를 사용, navigation을 통해 fragment를 교체하도록 구성 |
 | viewModel | repository에서 가져온 데이터를 livedata, flow, state로 데이터 상태 구성 |
 
+<br>
+
+**페이지 구조도**
+
+![스크린샷 2023-11-13 오후 5 50 49](https://github.com/bayy1216/Beside-App/assets/80496838/99e3c8ea-0a5b-48d0-9b91-cded64554cd3)
+
+<br>
+
 ### Server
 
 - 스프링부트 프레임워크 사용, JPA + JWT
